@@ -41,31 +41,26 @@
         </nav>
     </header>
     <div class="content-container">
-        <div class="paypal">
-            <p id="heading">Paypal fee Calculator</p>
-            <p>Example : (200(amount) * 4.4%) + 0.30(fixed fee)</p>
-            <input type="text" id="paypal-amount" placeholder="Enter Amount" />
+        <div class="percentage">
+            <p id="heading">Percentage Difference Calculator</p>
+            <p>Example 1: 40 is a 100% increase of 20.</p>
+            <p>Example 2: 5 is a 50% decrease of 10..</p>
+            <input type="text" id="percentage-diff-value1" placeholder="Enter Value 1 here" />
             <label for=""> of </label>
-            <select name="countries" id="countries">
-              <option value="US">United States</option>
-              <option value="UK">United Kingdom</option>
-              <option value="Canada">Canada</option>
-            </select><br>
-            <textarea name="" class="answer" id="paypal-result" placeholder="Result" readonly></textarea><br>
-            <input class="percentage-btn" id="paypal-btn" type="submit" value="submit" />
-          </div>
+            <input type="text" id="percentage-diff-value2" placeholder="Enter Value 2 here" /><br>
+            <textarea name="" class="answer" id="percentage-diff-result" placeholder="Result" readonly></textarea><br>
+            <input id="percentage-difference-btn" type="submit" value="submit" />
+        </div>
     </div>
     <div class="references">
         <ol>
-          <li id="reference-list"><a href="/structure/calculators/percentage/percentage.html">Click for
-              Percentage Calculators</a>
-          </li>
-          <li id="reference-list"><a href="/structure/calculators/finance/simple-interest.html">Click for Finance
-              Calculators</a></li>
-          <li id="reference-list"><a href="/structure/calculators/time/dates.html">Click for Time
-              Calculators</a></li>
+            <li id="reference-list"><a href="/structure/calculators/percentage/percentage.html">Click for
+                    Percentage Calculator</a>
+            </li>
+            <li id="reference-list"><a href="/structure/calculators/percentage/percentage-change.html">Click for
+                    Percentage Change Calculator</a></li>
         </ol>
-      </div>
+    </div>
 </body>
 
 </html>

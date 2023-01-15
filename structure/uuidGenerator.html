@@ -1,40 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <link rel="stylesheet" href="/styles//index.css" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <div class="header navigation">
-      <a href="home.html">
-        <img src="\assets\images\calculator.png" alt="logo" id="logo" />
-      </a>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/styles/home.css">
+  <link rel="stylesheet" href="/styles/uuid.css">
+  <title>Calc-tools</title>
+</head>
+
+<body>
+  <header class="header">
+    <a href="">
+      <img src="/assets/images/calculator.png" alt="logo" id="logo" />
+    </a>
+    <nav>
       <ul>
         <li>
-          <a href="home.html">
+          <a href="/structure/home.html">
             <span>Home</span>
           </a>
         </li>
         <li>
-          <a href="calculators.html">
+          <a href="/structure/calculators/calculators.html">
             <span>Calculators</span>
           </a>
         </li>
         <li>
-          <a href="passwordConvertor.html">
+          <a href="/structure/passwordConvertor.html">
             <span>Password Converters</span>
           </a>
         </li>
         <li>
-          <a href="uuidGenerator.html">
+          <a href="/structure/uuidGenerator.html">
             <span>UUID Generators</span>
           </a>
         </li>
       </ul>
+    </nav>
+  </header>
+  <div class="content-container">
+    <div class="left">
+      <p id="heading">Generate Single uuid</p>
+      <textarea name="" id="single-uuid" placeholder="Generated uuids" readonly></textarea><br>
+      <button id="single-uuid-btn">Generate</button>
     </div>
-    <div>UUID Generators</div>
-  </body>
+    <div class="right">
+      <p id="heading">Generate Bulk uuid</p>
+      <input type="text" class="single-uuid" id="bulk-uuid-amount" placeholder="Enter the amount of uuids"><br>
+      <textarea name="" class="single-uuid" id="generated-bulk-uuids" placeholder="Generated uuids" readonly></textarea><br>
+      <button>Generate</button>
+    </div>
+    <div class="reference">
+      <ol>
+        <li id="reference-list"><a href="/structure/calculators/calculators.html">Percentage Calculators</a></li>
+        <li id="reference-list"><a href="/structure/calculators/paypalCalculator.html">Paypal Fee Calculator</a></li>
+        <li id="reference-list"><a href="/structure/passwordConvertor.html">Password Converters</a></li>
+        <li id="reference-list"><a href="/structure/calculators/finance/simple-interest.html">Financial Calculators</a>
+        </li>
+        <li id="reference-list"><a href="/structure/calculators/time/dates.html">Time Calculators</a></li>
+      </ol>
+    </div>
+  </div>
+</body>
+
 </html>

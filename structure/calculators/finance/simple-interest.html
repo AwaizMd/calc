@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/styles/home.css">
+    <link rel="stylesheet" href="/styles/percentage.css">
+    <title>Calc-tools</title>
+</head>
+
+<body>
+    <header class="header">
+        <a href="/structure/home.html">
+            <img src="/assets/images/calculator.png" alt="logo" id="logo" />
+        </a>
+        <nav>
+            <ul>
+                <li>
+                    <a href="/structure/home.html">
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/structure/calculators/calculators.html">
+                        <span>Calculators</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/structure/passwordConvertor.html">
+                        <span>Password Converters</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/structure/uuidGenerator.html">
+                        <span>UUID Generators</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <div class="content-container">
+        <div class="simple-interest">
+            <p id="heading">Simple Interest Calculator</p>
+            <p>Example : 25% of 100 = 25</p>
+            <input type="text" id="si-principle-amount" placeholder="Enter Principle Amount" />
+            <input type="text" id="si-amount" placeholder="Enter Interest Rate" /><br>
+            <input type="text" id="si-period" placeholder="Enter Period" />
+            <select name="period-type" id="period-type">
+                <option value="days">Days</option>
+                <option value="months">Months</option>
+                <option value="years">Years</option>
+            </select>
+            <br />
+            <textarea name="" id="answer" placeholder="Result" readonly></textarea>
+            <br />
+            <input class="percentage-btn" id="si-btn" type="submit" value="submit" />
+        </div>
+    </div>
+    <div class="references">
+        <ol>
+            <li id="reference-list"><a href="/structure/calculators/finance/compound-interest.html">Click for
+                    Compound Interest</a>
+            </li>
+            <li id="reference-list"><a href="/structure/calculators/finance/future-value.html">Click for Future
+                    Value calculator</a></li>
+            <li id="reference-list"><a href="/structure/calculators/finance/present-value.html">Click for Present
+                    Value calculator</a></li>
+            <li id="reference-list"><a href="/structure/calculators/finance/mortage.html">Click for Mortage
+                    calculator</a>
+            </li>
+        </ol>
+    </div>
+</body>
+
+</html>

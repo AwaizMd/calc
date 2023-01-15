@@ -1,81 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/styles/index.css" />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
-    <title>tools</title>
-  </head>
-  <body>
-    <div class="header navigation">
-      <a href="home.html">
-        <img src="\assets\images\calculator.png" alt="logo" id="logo" />
-      </a>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/styles/home.css">
+  <title>Calc-tools</title>
+</head>
+
+<body>
+  <header class="header">
+    <a href="">
+      <img src="/assets/images/calculator.png" alt="logo" id="logo" />
+    </a>
+    <nav>
       <ul>
         <li>
-          <a href="home.html">
+          <a href="/structure/home.html">
             <span>Home</span>
           </a>
         </li>
         <li>
-          <a href="calculators.html">
+          <a href="/structure/calculators/calculators.html">
             <span>Calculators</span>
           </a>
         </li>
         <li>
-          <a href="passwordConvertor.html">
+          <a href="/structure/passwordConvertor.html">
             <span>Password Converters</span>
           </a>
         </li>
         <li>
-          <a href="uuidGenerator.html">
+          <a href="/structure/uuidGenerator.html">
             <span>UUID Generators</span>
           </a>
         </li>
       </ul>
-    </div>
-    <div class="contentDiv">
+    </nav>
+  </header>
+  <div class="content-container">
+    <div class="calculators">
       <p id="headings">Calculators</p>
-      <div class="calculators">
-        <ol>
-          <li>
-            <a href="/structure/calculators/percentage.html">Percentage Calculator</a>
-          </li>
+      <ul>
+        <li>
+          <a href="/structure/calculators/percentage/percentage.html">Percentage Calculator</a>
+        </li>
 
-          <li>
-            <a href="/structure/calculators/paypalCalculator.html">Paypal Calculator</a>
-          </li>
+        <li>
+          <a href="/structure/calculators/paypalCalculator.html">Paypal Fee Calculator</a>
+        </li>
 
-          <li>
-            <a href="/structure/calculators/finance.html">Financial Calculator</a>
-          </li>
+        <li>
+          <a href="/structure/calculators/finance/simple-interest.html">Financial Calculator</a>
+        </li>
 
-          <li>
-            <a href="/structure/calculators/time.html">Time Calculator</a>
-          </li>
-
-          <li>
-            <a href="/structure/calculators/calorie.html">Calorie Calculator</a>
-          </li>
-        </ol>
-
-      </div>
-      <div class="passwordConvertor">
-          <p id="headings">Password Convertor</p>
-        
-      </div>
-      <div class="uuidGenerator">
-          <p id="headings">UUID Generator</p>
-
-      </div>
+        <li>
+          <a href="/structure/calculators/time/dates.html">Time Calculator</a>
+        </li>
+      </ul>
     </div>
-    <footer></footer>
-    <!-- <script src="/scripts/calculator.js"></script> -->
-  </body>
+    <div class="passwordConvertor">
+      <p id="headings">Password Convertor</p>
+      <ul>
+        <li>
+          <a href="/structure/passwordConvertor.html">Password Encryption</a>
+        </li>
+
+        <li>
+          <a href="/structure/passwordConvertor.html">Password Decryption</a>
+        </li>
+      </ul>
+    </div>
+    <div class="uuidGenerator">
+      <p id="headings">UUID Generator</p>
+      <ul>
+        <li>
+          <a href="/structure/uuidGenerator.html">Single uuid</a>
+        </li>
+        <li>
+          <a href="/structure/uuidGenerator.html">Bulk uuid</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</body>
+
 </html>

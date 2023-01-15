@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/home.css" />
+    <link rel="stylesheet" href="/styles/time.css">
+    <title>dates</title>
+</head>
+
+<body>
+    <header class="header">
+        <a href="">
+            <img src="/assets/images/calculator.png" alt="logo" id="logo" />
+        </a>
+        <nav>
+            <ul>
+                <li>
+                    <a href="/structure/home.html">
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/structure/calculators/calculators.html">
+                        <span>Calculators</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/structure/passwordConvertor.html">
+                        <span>Password Converters</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/structure/uuidGenerator.html">
+                        <span>UUID Generators</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <div class="content-container">
+        <div class="dates">
+            <div class="dates-days">
+                <p id="headings">Days Between Dates</p>
+                <input type="date" class="date" id="date1">
+                <label for="" id="to">to</label>
+                <input type="date" class="date" id="date2">
+                <br>
+              <textarea name="" id="date-days" placeholder="Days" readonly></textarea><br>
+              <button id="date-days-btn">submit</button>
+            </div>
+            <div class="dates-timestamp">
+                <p id="d-heading">Date to Timestamp</p>
+                <input type="date" class="date" id="date3">
+                <button id="date-timestamp-btn">submit</button><br>
+              <textarea name="" id="date-timestamp" placeholder="timestamps" readonly></textarea><br>
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

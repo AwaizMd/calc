@@ -1,62 +1,95 @@
-h3{
-    margin-bottom: 1rem;
-    margin-top: 2rem;
+body{
+  margin-bottom: 10rem;
 }
 
-p{
-    width: 60vw;
+#heading {
+  color: #333;
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
 }
 
-input{
-    padding: 10px;
-    margin: 1rem;
-    border:  1px solid  rgb(155, 77, 202);
-    border-radius: 5px;
+
+p {
+  width: 60vw;
 }
 
-label{
-    font-size: 1rem;
+input {
+  padding: 10px;
+  margin: 1rem;
+  border: 1px solid #333;
+  border-radius: 5px;
 }
 
-.contentDiv{
-    margin: 5rem;
+#countries,#period-type{
+  padding: 0.5rem;
+  margin: 1rem;
+  border: 1px solid #333;
+  border-radius: 5px;
 }
 
-#percentage-btn{
-    background-color: white;
-    border: none;
+label {
+  font-size: 1rem;
 }
 
-#percentage-btn:hover{
-    background-color: rgb(155, 77, 202);
-    border: none;
-    color: white;
+.content {
+  margin-left: 2rem;
 }
 
-#percentage-difference-btn{
-    background-color: white;
-    border: none;
+#percentage-btn,.percentage-btn {
+  background-color: white;
+  border: none;
 }
 
-#percentage-difference-btn:hover{
-    background-color: rgb(155, 77, 202);
-    border: none;
-    color: white;
+#percentage-btn:hover,.percentage-btn:hover {
+  background-color: #333;
+  border: none;
+  color: white;
 }
 
-#percentage-change-btn{
-    background-color: white;
-    border: none;
+#percentage-difference-btn {
+  background-color: white;
+  border: none;
 }
 
-#percentage-change-btn:hover{
-    background-color: rgb(155, 77, 202);
-    border: none;
-    color: white;
+#percentage-difference-btn:hover {
+  background-color: rgb(155, 77, 202);
+  border: none;
+  color: white;
 }
 
-#answer{
-    width: 20rem;
-    border: none;
-    color: rgb(155, 77, 202);
+#percentage-change-btn {
+  background-color: white;
+  border: none;
+  margin-top: 1rem;
+}
+
+#percentage-change-btn:hover {
+  background-color: #333;
+  border: none;
+  color: white;
+}
+
+#answer,.answer {
+  padding: 2rem;
+  border: 1px solid #333;
+  border-radius: 5px;
+  margin-top: 1rem;
+  margin-left: 1rem;
+  background-color: white;
+}
+
+.references{
+  margin-left: 2rem;
+}
+
+#reference-list a{
+  margin-top: 1rem;
+}
+#reference-list a:hover{
+  margin-top: 1rem;
+  color: blue;
+}
+#reference-list{
+  margin-top: 1rem;
 }
