@@ -2,17 +2,17 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/styles/time.css" />
     <link rel="stylesheet" href="/styles/home.css" />
-    <link rel="stylesheet" href="/styles/time.css">
     <title>dates</title>
 </head>
 
 <body>
     <header class="header">
-        <a href="">
+        <a href="/structure/home.html">
             <img src="/assets/images/calculator.png" alt="logo" id="logo" />
         </a>
         <nav>
@@ -40,26 +40,106 @@
             </ul>
         </nav>
     </header>
-    <div class="content-container">
-        <div class="dates">
-            <div class="dates-days">
-                <p id="headings">Days Between Dates</p>
-                <input type="date" class="date" id="date1">
-                <label for="" id="to">to</label>
-                <input type="date" class="date" id="date2">
-                <br>
-              <textarea name="" id="date-days" placeholder="Days" readonly></textarea><br>
-              <button id="date-days-btn">submit</button>
-            </div>
-            <div class="dates-timestamp">
-                <p id="d-heading">Date to Timestamp</p>
-                <input type="date" class="date" id="date3">
-                <button id="date-timestamp-btn">submit</button><br>
-              <textarea name="" id="date-timestamp" placeholder="timestamps" readonly></textarea><br>
+    <div class="content">
+        <div id="current-timestamp"></div><br>
+        <div id="days-left"></div>
+        <div class="content-containers">
+            <div class="left">
+                <div class="dates-days">
+                    <p id="headings">Days Between Dates</p>
+                    <input type="date" class="date" id="date1" />
+                    <label for="" id="to">to</label>
+                    <input type="date" class="date" id="date2" />
+                    <br />
+                    <textarea name="" id="date-days" placeholder="Days" readonly></textarea><br />
+                    <button id="date-days-btn" onclick="daysBetweenDates()">
+                        calculate
+                    </button>
+                </div>
 
+                <div class="diff-two-timestamps">
+                    <p id="headings">Diffrence between two timestamps</p>
+                    <input type="text" class="timestamp" id="timestamp1" placeholder="timestamp" />
+                    <label for="" id="to">to</label>
+                    <input type="text" class="timestamp" id="timestamp2" placeholder="timestamp" />
+                    <br />
+                    <p id="milliseconds"></p>
+                    <p id="seconds"></p>
+                    <p id="minutes"></p>
+                    <p id="hours"></p>
+                    <button id="timestamp-diff-btn" onclick="calculateDifference()">differentiate</button>
+                </div>
+            </div>
+            <div class="right">
+                <div class="dates-timestamp">
+                    <p id="headings">Date to Timestamp</p>
+                    <input type="date" class="date" id="date3" />
+                    <button id="date-timestamp-btn" onclick="convertToTimestamp()">convert</button><br />
+                    <textarea name="" id="date-timestamp" placeholder="timestamps" readonly></textarea><br />
+                </div>
             </div>
         </div>
     </div>
+
+    <script>
+        setInterval(function () {
+            let timestamp = new Date().getTime();
+            let date = new Date();
+            let currentDate = new Date();
+            let currentYear = currentDate.getFullYear();
+            let lastDayOfYear = new Date(currentYear, 11, 31);
+            let timeDiff = lastDayOfYear - currentDate;
+            let daysLeft = Math.ceil(timeDiff / (1000 * 3600 * 24));
+            document.getElementById("current-timestamp").innerHTML = `* Current Timestamp : ${timestamp}`;
+            document.getElementById("days-left").innerHTML = `* ${daysLeft} days left in the current year`;
+        }, 1000);
+
+
+
+        function daysBetweenDates() {
+            let startDate = new Date(document.getElementById("date1").value);
+            let endDate = new Date(document.getElementById("date2").value);
+            let difference = endDate.getTime() - startDate.getTime();
+            let differenceInDays = difference / (1000 * 3600 * 24);
+            document.getElementById("date-days").innerHTML =
+                "Difference: " + differenceInDays + " days";
+        }
+
+        function convertToTimestamp() {
+            let date = new Date(document.getElementById("date3").value);
+            let timestamp = date.getTime();
+            document.getElementById("date-timestamp").innerHTML = "Timestamp: " + timestamp;
+        }
+
+
+        function convertToDate() {
+            let timestamp = document.getElementById("timestamp3").value;
+            console.log("timestamp: ", timestamp);
+            // let date = new Date(timestamp);
+            // console.log("date: ", date);
+            document.getElementById("timestamp-date").innerHTML = "Date: " + new Date(timestamp);
+            // let timestamp = 1672185600000;
+            // let date = new Date(timestamp);
+            // console.log(date);
+        }
+
+        function calculateDifference() {
+            let startTime = document.getElementById("timestamp1").value;
+            let endTime = document.getElementById("timestamp2").value;
+            let differenceInMiliseconds = endTime - startTime;
+            let differenceInSeconds = differenceInMiliseconds / 1000;
+            let differenceInMinutes = differenceInSeconds / 60;
+            let differenceInHours = differenceInMinutes / 60;
+            document.getElementById("milliseconds").innerHTML = `difference in milliseconds ${differenceInMiliseconds}`
+            document.getElementById("seconds").innerHTML = `difference in seconds ${differenceInSeconds}`;
+            document.getElementById("minutes").innerHTML = `difference in minutes ${differenceInMinutes}`;
+            document.getElementById("hours").innerHTML = `differnce in hours ${differenceInHours}`;
+        }
+
+
+
+
+    </script>
 </body>
 
 </html>

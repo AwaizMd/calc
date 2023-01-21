@@ -115,6 +115,12 @@ ul li a:hover {
   .time-calculators {
     width: 100%;
   }
+  input[type="submit"],
+  button {
+    background-color: #333;
+    border: none;
+    color: white;
+  }
 }
 
 #headings {
@@ -123,13 +129,31 @@ ul li a:hover {
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
 }
 
-.date{
+.date {
   padding: 10px;
   border-radius: 5px;
   margin-left: 1rem;
   margin-right: 1rem;
 }
 
-#to{
+#to {
   font-size: 1.5rem;
+}
+
+.add{
+  height: 10rem;
+  background-color: #6e6d7a;
+  margin: 3rem;
+  text-align: center;
+  color: white;
+}
+
+.small-add{
+  height: 5rem;
+  background-color: #6e6d7a;
+  text-align: center;
+  color: white;
+  width: 100%;
+  margin: 2rem;
+  margin-right: 1rem;
 }

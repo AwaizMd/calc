@@ -12,7 +12,7 @@
 
 <body>
     <header class="header">
-        <a href="">
+        <a href="/structure/home.html">
             <img src="/assets/images/calculator.png" alt="logo" id="logo" />
         </a>
         <nav>
@@ -41,12 +41,12 @@
         </nav>
     </header>
     <div class="content-container">
-        <div class="present-value">
+        <div class="present-value left">
             <p id="heading">Present Value Calculator</p>
             <p>Example : </p>
-            <input type="text" id="fv-value" placeholder="Enter Future Value" />
-            <input type="text" id="fv-interest-value" placeholder="Enter Interest Rate" /><br>
-            <input type="text" id="fv-period" placeholder="Enter Period" />
+            <input type="number" id="fv-value" placeholder="Enter Future Value" />
+            <input type="number" id="fv-interest-value" placeholder="Enter Interest Rate" /><br>
+            <input type="number" id="fv-period" placeholder="Enter Period" />
             <select name="period-type" id="period-type">
                 <option value="days">Days</option>
                 <option value="months">Months</option>
@@ -54,7 +54,49 @@
             </select><br />
             <textarea name="" class="answer" id="fv-result" placeholder="Result" readonly></textarea>
             <br />
-            <input class="percentage-btn" id="fv-btn" type="submit" value="submit" />
+            <div class="small-add">ADVERTISEMENT</div>
+            <input class="percentage-btn" id="fv-btn" type="submit" value="Calculate"
+                onclick="calculatePresentValue()" />
+        </div>
+        <div class="article right">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum deleniti perferendis eos commodi soluta,
+                nobis
+                mollitia rerum pariatur dolor rem obcaecati iure vitae fugiat animi, ad et inventore ratione
+                consequuntur
+                cumque, qui aspernatur nulla! Architecto eius fugit ipsum, obcaecati pariatur nemo aliquam porro fuga
+                nisi sit
+                perferendis alias molestias ex iusto perspiciatis commodi doloribus accusamus ipsam, fugiat animi in!
+                Aspernatur
+                minima aut, libero hic iusto exercitationem delectus blanditiis, doloremque dolore quisquam labore
+                perferendis
+                distinctio deleniti earum? Perferendis beatae odit asperiores dolorem minima consectetur vel explicabo
+                aliquam
+                laudantium enim, fuga vero reiciendis consequatur quasi excepturi. Amet facere sed obcaecati ad,
+                necessitatibus
+                repellat cum autem modi exercitationem aspernatur optio fugiat eos, neque sunt, libero expedita. Minus
+                tempora
+                odit a? Quia id a, alias dolore magnam sed, earum suscipit error, cumque molestias ex voluptatem
+                adipisci
+                impedit placeat cum sunt delectus ea ducimus natus enim quasi. Officiis laudantium hic consequatur sit
+                dolores
+                repellendus aliquid inventore! Ratione excepturi obcaecati debitis ad velit earum, est in tenetur,
+                autem, quis
+                asperiores? Quis cumque voluptas a? Tempora vero in voluptate nihil cumque maiores pariatur, corrupti
+                beatae
+                veniam iure deserunt vitae corporis ipsum consequatur animi, nemo delectus placeat voluptas quas
+                assumenda sint.
+                Voluptatibus officia quae est recusandae odit ea vero culpa quisquam nulla necessitatibus. Minus, ab sit
+                officiis ea mollitia odio praesentium sunt dicta dolorem totam modi sed quod dolores ipsam beatae
+                impedit, non
+                debitis veniam, eos voluptates eaque iusto. Iure pariatur corrupti consectetur soluta vel. Ipsum culpa,
+                consequuntur fugit id officia maiores? Minima amet quae molestias maxime quasi odio nisi fugiat,
+                reprehenderit
+                architecto. A quasi sit corporis. Iure impedit dolor ipsam nam debitis aperiam odio dolore tenetur illo,
+                error
+                rerum temporibus officiis tempore id enim dolorum? Earum aspernatur aut et perferendis facere, maiores
+                laborum.
+                Mollitia deleniti accusantium consequuntur, quod, omnis fugit qui ratione consectetur in, error quas
+                velit?</p>
         </div>
     </div>
     <div class="references">
@@ -67,10 +109,30 @@
                     Interest</a></li>
             <li id="reference-list"><a href="/structure/calculators/finance/future-value.html">Click for Future
                     Value calculator</a></li>
-            <li id="reference-list"><a href="/structure/calculators/finance/mortage.html">Click for Mortage
+            <li id="reference-list"><a href="/structure/calculators/finance/mortage.html">Click for Mortgage
                     calculator</a></li>
         </ol>
     </div>
+
+    <script>
+        function calculatePresentValue() {
+            let futureValue = document.getElementById("fv-value").value;
+            let rate = document.getElementById("fv-interest-value").value;
+            let time = document.getElementById("fv-period").value;
+            let timeUnit = document.getElementById("period-type").value;
+
+            if (timeUnit === "days") {
+                time = time / 365;
+            } else if (timeUnit === "months") {
+                time = time / 12;
+            }
+
+            let presentValue = (futureValue / Math.pow(1 + rate / 100, time)).toFixed(3);
+            let totalAmount = (presentValue * Math.pow(1 + rate / 100, time)).toFixed(3);
+            document.getElementById("fv-result").innerHTML = `Present Value is: ${presentValue}`;
+        }
+
+    </script>
 
 </body>
 

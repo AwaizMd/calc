@@ -12,7 +12,7 @@
 
 <body>
     <header class="header">
-        <a href="">
+        <a href="/structure/home.html">
             <img src="/assets/images/calculator.png" alt="logo" id="logo" />
         </a>
         <nav>
@@ -43,13 +43,52 @@
     <div class="content-container">
         <div class="percentage">
             <p id="heading">Percentage Change Calculator</p>
-            <p>Example 1: 10 increase 5% = 10.5</p>
-            <p>Example 2: 50 increase 100% = 100</p>
-            <input type="text" id="percentage-change-value1" placeholder="Enter Value 1 here" />
+            <input type="number" id="percentage-change-value1" placeholder="Enter original value" />
             <label for=""> of </label>
-            <input type="text" id="percentage-change-value2" placeholder="Enter Value 2 here" /><br>
-            <textarea name="" class="answer" id="percentage-change-result"  placeholder="Result" readonly></textarea><br>
-            <input id="percentage-change-btn" type="submit" value="submit" />
+            <input type="number" id="percentage-change-value2" placeholder="Enter new value" /><br>
+            <textarea name="" class="answer" id="percentage-change-result" placeholder="Result" readonly></textarea><br>
+            <div class="small-add">ADVERTISEMENT</div>
+            <input id="percentage-change-btn" type="submit" onclick="calculatePercentageChange()" value="calculate"/>
+        </div>
+        <div class="article">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum deleniti perferendis eos commodi soluta,
+                nobis
+                mollitia rerum pariatur dolor rem obcaecati iure vitae fugiat animi, ad et inventore ratione
+                consequuntur
+                cumque, qui aspernatur nulla! Architecto eius fugit ipsum, obcaecati pariatur nemo aliquam porro fuga
+                nisi sit
+                perferendis alias molestias ex iusto perspiciatis commodi doloribus accusamus ipsam, fugiat animi in!
+                Aspernatur
+                minima aut, libero hic iusto exercitationem delectus blanditiis, doloremque dolore quisquam labore
+                perferendis
+                distinctio deleniti earum? Perferendis beatae odit asperiores dolorem minima consectetur vel explicabo
+                aliquam
+                laudantium enim, fuga vero reiciendis consequatur quasi excepturi. Amet facere sed obcaecati ad,
+                necessitatibus
+                repellat cum autem modi exercitationem aspernatur optio fugiat eos, neque sunt, libero expedita. Minus
+                tempora
+                odit a? Quia id a, alias dolore magnam sed, earum suscipit error, cumque molestias ex voluptatem
+                adipisci
+                impedit placeat cum sunt delectus ea ducimus natus enim quasi. Officiis laudantium hic consequatur sit
+                dolores
+                repellendus aliquid inventore! Ratione excepturi obcaecati debitis ad velit earum, est in tenetur,
+                autem, quis
+                asperiores? Quis cumque voluptas a? Tempora vero in voluptate nihil cumque maiores pariatur, corrupti
+                beatae
+                veniam iure deserunt vitae corporis ipsum consequatur animi, nemo delectus placeat voluptas quas
+                assumenda sint.
+                Voluptatibus officia quae est recusandae odit ea vero culpa quisquam nulla necessitatibus. Minus, ab sit
+                officiis ea mollitia odio praesentium sunt dicta dolorem totam modi sed quod dolores ipsam beatae
+                impedit, non
+                debitis veniam, eos voluptates eaque iusto. Iure pariatur corrupti consectetur soluta vel. Ipsum culpa,
+                consequuntur fugit id officia maiores? Minima amet quae molestias maxime quasi odio nisi fugiat,
+                reprehenderit
+                architecto. A quasi sit corporis. Iure impedit dolor ipsam nam debitis aperiam odio dolore tenetur illo,
+                error
+                rerum temporibus officiis tempore id enim dolorum? Earum aspernatur aut et perferendis facere, maiores
+                laborum.
+                Mollitia deleniti accusantium consequuntur, quod, omnis fugit qui ratione consectetur in, error quas
+                velit?</p>
         </div>
     </div>
     <div class="references">
@@ -61,7 +100,20 @@
                     Percentage Difference Calculator</a></li>
         </ol>
     </div>
-    
+
+    <script>
+        function calculatePercentageChange() {
+            let originalValue = document.getElementById("percentage-change-value1").value;
+            let newValue = document.getElementById("percentage-change-value2").value;
+            let change = newValue - originalValue;
+            let percentageChange = ((change / originalValue) * 100).toFixed(3);
+            if(percentageChange>0){
+                document.getElementById("percentage-change-result").value = percentageChange + " % increase";
+            }else{
+                document.getElementById("percentage-change-result").value = percentageChange + " % decrease";
+            }
+        }
+    </script>
 </body>
 
 </html>

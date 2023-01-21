@@ -1,124 +1,205 @@
-//percentage calculators
+// percentage calculators
 
-function percentage(number, total) {
-  return (number / total) * 100;
+function percentage() {
+  let number = document.getElementById("percent").value;
+  let total = document.getElementById("value").value;
+  let percent = (number / 100) * total;
+  document.getElementById(
+    "percent-value-result"
+  ).innerHTML = `${number}% of ${total} = ${percent}`;
 }
 
-function percentageDifference(number1, number2) {
-  return ((number1 - number2) / number1) * 100;
+function calculatePercentageDifference() {
+  let value1 = document.getElementById("percentage-diff-value1").value;
+  let value2 = document.getElementById("percentage-diff-value2").value;
+  let difference = Math.abs(value1 - value2);
+  let average = (parseFloat(value1) + parseFloat(value2)) / 2;
+  let percentageDifference = ((difference / average) * 100).toFixed(3);
+  document.getElementById("percentage-diff-result").value =
+    percentageDifference + "%";
 }
 
-function percentageChange(number1, number2) {
-  return ((number2 - number1) / number1) * 100;
-}
-
-//financial calculators
-
-/* 
-Simple interest calculator: This algorithm calculates the interest on a loan or an investment based on
- the principal amount, the interest rate, and the number of periods.
-*/
-function simpleInterest(principal, rate, periods) {
-  return (principal * rate * periods) / 100;
-}
-/* 
-Compound interest calculator: This algorithm calculates the compound interest on a loan or an 
-investment based on the principal amount, the interest rate, and the number of periods.
-*/
-function compoundInterest(principal, rate, periods) {
-  return principal * Math.pow(1 + rate / 100, periods) - principal;
-}
-/* 
-Future value calculator: This algorithm calculates the future value of an investment based on 
-the present value, the interest rate, and the number of periods.
-*/
-function futureValue(presentValue, rate, periods) {
-  return presentValue * Math.pow(1 + rate / 100, periods);
-}
-/* 
-Present value calculator: This algorithm calculates the present value of an investment based on the
- future value, the interest rate,and the number of periods.
-*/
-function presentValue(futureValue, rate, periods) {
-  return futureValue / Math.pow(1 + rate / 100, periods);
-}
-/* 
-Mortgage calculator: This algorithm calculates the monthly payment on a mortgage based on the loan amount, 
-the interest rate, and the number of periods.
-*/
-function mortgagePayment(loanAmount, rate, periods) {
-  return (loanAmount * rate) / (1 - Math.pow(1 + rate, -periods));
-}
-
-//paypal fee calculator
-
-function calculatePaypalFee(amount, country) {
-  let percentage;
-  let fixedFee;
-
-  // Set the percentage and fixed fees based on the country
-  if (country === 'US') {
-    percentage = 0.029;
-    fixedFee = 0.30;
-  } else if (country === 'UK') {
-    percentage = 0.034;
-    fixedFee = 0.20;
+function calculatePercentageChange() {
+  let originalValue = document.getElementById("percentage-change-value1").value;
+  let newValue = document.getElementById("percentage-change-value2").value;
+  let change = newValue - originalValue;
+  let percentageChange = ((change / originalValue) * 100).toFixed(3);
+  if (percentageChange > 0) {
+    document.getElementById("percentage-change-result").value =
+      percentageChange + " % increase";
   } else {
-    // Set default fees for other countries
-    percentage = 0.029;
-    fixedFee = 0.30;
+    document.getElementById("percentage-change-result").value =
+      percentageChange + " % decrease";
+  }
+}
+
+// finance calculators
+
+function simpleInterest() {
+  let principal = document.getElementById("si-principle-amount").value;
+  let rate = document.getElementById("si-amount").value;
+  let time = document.getElementById("si-period").value;
+  let timeUnit = document.getElementById("period-type").value;
+
+  if (timeUnit === "days") {
+    time = time / 365;
+  } else if (timeUnit === "months") {
+    time = time / 12;
+  }
+  let simpleInterest = ((principal * rate * time) / 100).toFixed(3);
+  let totalAmount = (principal - +-simpleInterest).toFixed(3);
+
+  document.getElementById(
+    "answer"
+  ).innerHTML = ` Total Interest = ${simpleInterest} and Total Amount = ${totalAmount}`;
+}
+
+function compoundInterest() {
+  let principal = document.getElementById("ci-principle-amount").value;
+  let rate = document.getElementById("ci-interest-rate").value;
+  let time = document.getElementById("ci-period").value;
+  let timeUnit = document.getElementById("period-type").value;
+
+  if (timeUnit === "days") {
+    time = time / 365;
+  } else if (timeUnit === "months") {
+    time = time / 12;
   }
 
-  // Calculate the fee
-  const fee = (amount * percentage) + fixedFee;
+  let interest = (principal * Math.pow(1 + rate / 100, time)).toFixed(3);
+  interest = interest - principal;
+  let totalAmount = (principal - +-interest).toFixed(3);
 
-  return fee;
+  document.getElementById(
+    "ci-result"
+  ).innerHTML = `Total interest = ${interest} and TotalAmount = ${totalAmount}`;
 }
 
-// Example usage
-const transactionAmount = 100;
-const recipientCountry = 'US';
-const fee = calculatePaypalFee(transactionAmount, recipientCountry);
-console.log(`Fee: $${fee}`);
+function calculateFutureValue() {
+  let presentValue = document.getElementById("fv-present-value").value;
+  let rate = document.getElementById("fv-interest-rate").value;
+  let time = document.getElementById("fv-period").value;
+  let timeUnit = document.getElementById("period-type").value;
 
-// Time calculators
+  if (timeUnit === "days") {
+    time = time / 365;
+  } else if (timeUnit === "months") {
+    time = time / 12;
+  }
 
-// Initialize a moment object
-const now = moment();
-
-// Calculate the number of seconds until the end of the day
-const secondsUntilEndOfDay = now.endOf('day').diff(now, 'seconds');
-
-// Calculate the number of days between two dates
-const daysBetween = moment("2022-01-01").diff(moment("2021-01-01"), 'days');
-
-// Calculating the difference between two timestamps:
-function diffTimestamps(timestamp1, timestamp2) {
-  const difference = timestamp1 - timestamp2;
-  return Math.floor(difference / 1000);
+  let futureValue = (presentValue * Math.pow(1 + rate / 100, time)).toFixed(3);
+  let totalAmount = futureValue;
+  document.getElementById(
+    "fv-result"
+  ).innerHTML = `future Value is : ${futureValue}`;
 }
 
-//Adding a certain number of seconds to a timestamp:
-function addSeconds(timestamp, seconds) {
-  return timestamp + (seconds * 1000);
+function calculatePresentValue() {
+  let futureValue = document.getElementById("fv-value").value;
+  let rate = document.getElementById("fv-interest-value").value;
+  let time = document.getElementById("fv-period").value;
+  let timeUnit = document.getElementById("period-type").value;
+
+  if (timeUnit === "days") {
+    time = time / 365;
+  } else if (timeUnit === "months") {
+    time = time / 12;
+  }
+
+  let presentValue = (futureValue / Math.pow(1 + rate / 100, time)).toFixed(3);
+  let totalAmount = (presentValue * Math.pow(1 + rate / 100, time)).toFixed(3);
+  document.getElementById(
+    "fv-result"
+  ).innerHTML = `Present Value is: ${presentValue}`;
 }
 
+function calculateMortgage() {
+  let principal = document.getElementById("mortage-loan-amount").value;
+  let rate = document.getElementById("mortage-interest-rate").value / 100 / 12;
+  let term = document.getElementById("mortage-period").value;
 
-/* Converting a timestamp to a human-readable format and This function converts
- a timestamp to a human-readable string, using the device's local timezone. */
-function formatTimestamp(timestamp) {
-  const date = new Date(timestamp);
-  return date.toLocaleString();
+  let monthlyPayment = (
+    (principal * (rate * Math.pow(1 + rate, term))) /
+    (Math.pow(1 + rate, term) - 1)
+  ).toFixed(3);
+  let totalInterest = (monthlyPayment * term - principal).toFixed(3);
+  let totalAmount = principal - +-totalInterest;
+  document.getElementById(
+    "mortage-result"
+  ).innerHTML = ` monthly payment is : ${monthlyPayment}, total interest is : ${totalInterest}, and total amount is : ${totalAmount}`;
 }
 
+// time calculators
 
-//Converting a human-readable string to a timestamp:
-function parseTimestamp(timestampString) {
-  return Date.parse(timestampString);
+setInterval(function () {
+  let timestamp = new Date().getTime();
+  let date = new Date();
+  let currentDate = new Date();
+  let currentYear = currentDate.getFullYear();
+  let lastDayOfYear = new Date(currentYear, 11, 31);
+  let timeDiff = lastDayOfYear - currentDate;
+  let daysLeft = Math.ceil(timeDiff / (1000 * 3600 * 24));
+  document.getElementById(
+    "current-timestamp"
+  ).innerHTML = `* Current Timestamp : ${timestamp}`;
+  document.getElementById(
+    "days-left"
+  ).innerHTML = `* ${daysLeft} days left in the current year`;
+}, 1000);
+
+function daysBetweenDates() {
+  let startDate = new Date(document.getElementById("date1").value);
+  let endDate = new Date(document.getElementById("date2").value);
+  let difference = endDate.getTime() - startDate.getTime();
+  let differenceInDays = difference / (1000 * 3600 * 24);
+  document.getElementById("date-days").innerHTML =
+    "Difference: " + differenceInDays + " days";
 }
 
-/* 
-EX:-
-This function converts a human-readable string to a timestamp. The string should be in a 
-format that can be parsed by the Date.parse() function, such as "2022-01-01T00:00:00".
-*/
+function convertToTimestamp() {
+  let date = new Date(document.getElementById("date3").value);
+  let timestamp = date.getTime();
+  document.getElementById("date-timestamp").innerHTML =
+    "Timestamp: " + timestamp;
+}
+
+function convertToDate() {
+  let timestamp = document.getElementById("timestamp3").value;
+  console.log("timestamp: ", timestamp);
+  document.getElementById("timestamp-date").innerHTML =
+    "Date: " + new Date(timestamp);
+}
+
+function calculateDifference() {
+  let startTime = document.getElementById("timestamp1").value;
+  let endTime = document.getElementById("timestamp2").value;
+  let differenceInMiliseconds = endTime - startTime;
+  let differenceInSeconds = differenceInMiliseconds / 1000;
+  let differenceInMinutes = differenceInSeconds / 60;
+  let differenceInHours = differenceInMinutes / 60;
+  document.getElementById(
+    "milliseconds"
+  ).innerHTML = `difference in milliseconds ${differenceInMiliseconds}`;
+  document.getElementById(
+    "seconds"
+  ).innerHTML = `difference in seconds ${differenceInSeconds}`;
+  document.getElementById(
+    "minutes"
+  ).innerHTML = `difference in minutes ${differenceInMinutes}`;
+  document.getElementById(
+    "hours"
+  ).innerHTML = `differnce in hours ${differenceInHours}`;
+}
+
+// paypal fee
+
+function calculatePaypalFee() {
+  // Get the amount from the input field
+  let amount = document.getElementById("paypal-amount").value;
+
+  // Calculate the fee (2.9% + $0.30)
+  let fee = (amount * 0.029 + 0.3).toFixed(3);
+
+  // Display the fee
+  document.getElementById("paypal-result").innerHTML = "Fee: $" + fee;
+}

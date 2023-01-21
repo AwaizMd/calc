@@ -12,7 +12,7 @@
 
 <body>
   <header class="header">
-    <a href="">
+    <a href="/structure/home.html">
       <img src="/assets/images/calculator.png" alt="logo" id="logo" />
     </a>
     <nav>
@@ -43,26 +43,44 @@
   <div class="content-container">
     <div class="left">
       <p id="heading">Generate Single uuid</p>
-      <textarea name="" id="single-uuid" placeholder="Generated uuids" readonly></textarea><br>
-      <button id="single-uuid-btn">Generate</button>
+      <form id="myForm">
+        <label for="number">Enter the number of UUIDs to generate:</label><br>
+        <input type="number" id="number" name="number" placeholder="Enter number" min="1" value="1"><br>
+        <input type="button" id="button" value="Generate" onclick="generateUUID()">
+      </form>
+      <ol id="uuid-list"></ol>
     </div>
-    <div class="right">
-      <p id="heading">Generate Bulk uuid</p>
-      <input type="text" class="single-uuid" id="bulk-uuid-amount" placeholder="Enter the amount of uuids"><br>
-      <textarea name="" class="single-uuid" id="generated-bulk-uuids" placeholder="Generated uuids" readonly></textarea><br>
-      <button>Generate</button>
-    </div>
+    <div class="right"></div>
     <div class="reference">
       <ol>
         <li id="reference-list"><a href="/structure/calculators/calculators.html">Percentage Calculators</a></li>
         <li id="reference-list"><a href="/structure/calculators/paypalCalculator.html">Paypal Fee Calculator</a></li>
         <li id="reference-list"><a href="/structure/passwordConvertor.html">Password Converters</a></li>
-        <li id="reference-list"><a href="/structure/calculators/finance/simple-interest.html">Financial Calculators</a>
+        <li id="reference-list"><a href="/structure/calculators/finance/simple-interest.html">Financial
+            Calculators</a>
         </li>
         <li id="reference-list"><a href="/structure/calculators/time/dates.html">Time Calculators</a></li>
       </ol>
     </div>
   </div>
+  <div class="add">ADVERTISEMENT</div>
+
+  <script>
+    function generateUUID() {
+      var number = document.getElementById("number").value;
+      var uuids = [];
+      for (var i = 0; i < number; i++) {
+        uuids.push(crypto.getRandomValues(new Uint32Array(4)).join('-'));
+      }
+      var uuidList = document.getElementById("uuid-list");
+      uuidList.innerHTML = "";
+      uuids.forEach(function (uuid) {
+        var listItem = document.createElement("li");
+        listItem.appendChild(document.createTextNode(uuid));
+        uuidList.appendChild(listItem);
+      });
+    }
+  </script>
 </body>
 
 </html>
