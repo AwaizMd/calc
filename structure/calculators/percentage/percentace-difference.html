@@ -101,16 +101,7 @@
         </ol>
     </div>
 
-    <script>
-        function calculatePercentageDifference() {
-            let value1 = document.getElementById("percentage-diff-value1").value;
-            let value2 = document.getElementById("percentage-diff-value2").value;
-            let difference = Math.abs(value1 - value2);
-            let average = (parseFloat(value1) + parseFloat(value2)) / 2;
-            let percentageDifference = ((difference / average) * 100).toFixed(3);
-            document.getElementById("percentage-diff-result").value = percentageDifference + "%";
-        }
-    </script>
+    <script src="/scripts/calculator.js"></script>
 </body>
 
 </html>

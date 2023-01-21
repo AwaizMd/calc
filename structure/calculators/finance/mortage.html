@@ -114,19 +114,7 @@
         </ol>
     </div>
 
-    <script>
-        function calculateMortgage() {
-            let principal = document.getElementById("mortage-loan-amount").value;
-            let rate = document.getElementById("mortage-interest-rate").value / 100 / 12;
-            let term = document.getElementById("mortage-period").value;
-
-            let monthlyPayment = (principal * (rate * Math.pow(1 + rate, term)) / (Math.pow(1 + rate, term) - 1)).toFixed(3);
-            let totalInterest = ((monthlyPayment * term) - principal).toFixed(3);
-            let totalAmount = principal - +- totalInterest;
-            document.getElementById("mortage-result").innerHTML = ` monthly payment is : ${monthlyPayment}, total interest is : ${totalInterest}, and total amount is : ${totalAmount}`;
-        }
-
-    </script>
+    <script src="/scripts/calculator.js"></script>
 </body>
 
 </html>

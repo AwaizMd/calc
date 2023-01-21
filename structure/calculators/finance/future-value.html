@@ -114,25 +114,7 @@
         </ol>
     </div>
 
-    <script>
-        function calculateFutureValue() {
-            let presentValue = document.getElementById("fv-present-value").value;
-            let rate = document.getElementById("fv-interest-rate").value;
-            let time = document.getElementById("fv-period").value;
-            let timeUnit = document.getElementById("period-type").value;
-
-            if (timeUnit === "days") {
-                time = time / 365;
-            } else if (timeUnit === "months") {
-                time = time / 12;
-            }
-
-            let futureValue = (presentValue * Math.pow(1 + rate / 100, time)).toFixed(3);
-            let totalAmount = futureValue;
-            document.getElementById("fv-result").innerHTML = `future Value is : ${futureValue}`;
-        }
-
-    </script>
+    <script src="/scripts/calculator.js"></script>
 </body>
 
 </html>

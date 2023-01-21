@@ -48,7 +48,6 @@
         <input type="number" id="number" name="number" placeholder="Enter number" min="1" value="1"><br>
         <input type="button" id="button" value="Generate" onclick="generateUUID()">
       </form>
-      <ol id="uuid-list"></ol>
     </div>
     <div class="right"></div>
     <div class="reference">
@@ -64,23 +63,9 @@
     </div>
   </div>
   <div class="add">ADVERTISEMENT</div>
+  <ol id="uuid-list"></ol>
 
-  <script>
-    function generateUUID() {
-      var number = document.getElementById("number").value;
-      var uuids = [];
-      for (var i = 0; i < number; i++) {
-        uuids.push(crypto.getRandomValues(new Uint32Array(4)).join('-'));
-      }
-      var uuidList = document.getElementById("uuid-list");
-      uuidList.innerHTML = "";
-      uuids.forEach(function (uuid) {
-        var listItem = document.createElement("li");
-        listItem.appendChild(document.createTextNode(uuid));
-        uuidList.appendChild(listItem);
-      });
-    }
-  </script>
+  <script src="/scripts/uuid-generator.js"></script>
 </body>
 
 </html>

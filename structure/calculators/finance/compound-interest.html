@@ -126,27 +126,7 @@
     </ol>
   </div>
 
-  <script>
-    function compoundInterest() {
-      let principal = document.getElementById("ci-principle-amount").value;
-      let rate = document.getElementById("ci-interest-rate").value;
-      let time = document.getElementById("ci-period").value;
-      let timeUnit = document.getElementById("period-type").value;
-
-      if (timeUnit === "days") {
-        time = time / 365;
-      } else if (timeUnit === "months") {
-        time = time / 12;
-      }
-
-      let interest = (principal * Math.pow(1 + (rate / 100), time)).toFixed(3);
-      interest = interest - principal;
-      let totalAmount = (principal - +- interest).toFixed(3);
-
-      document.getElementById("ci-result").innerHTML = `Total interest = ${interest} and TotalAmount = ${totalAmount}`;
-    }
-
-  </script>
+  <script src="/scripts/calculator.js"></script>
 </body>
 
 </html>

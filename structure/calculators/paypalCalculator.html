@@ -92,18 +92,7 @@
                     Calculators</a></li>
         </ol>
     </div>
-    <script>
-        function calculatePaypalFee() {
-            // Get the amount from the input field
-            var amount = document.getElementById("paypal-amount").value;
-
-            // Calculate the fee (2.9% + $0.30)
-            var fee = ((amount * 0.029) + 0.3).toFixed(3);
-
-            // Display the fee
-            document.getElementById("paypal-result").innerHTML = "Fee: $" + fee;
-        }
-    </script>
+    <script src="/scripts/calculator.js"></script>
 </body>
 
 </html>

@@ -114,25 +114,7 @@
         </ol>
     </div>
 
-    <script>
-        function simpleInterest() {
-            let principal = document.getElementById("si-principle-amount").value;
-            let rate = document.getElementById("si-amount").value;
-            let time = document.getElementById("si-period").value;
-            let timeUnit = document.getElementById("period-type").value;
-
-            if (timeUnit === "days") {
-                time = time / 365;
-            } else if (timeUnit === "months") {
-                time = time / 12;
-            }
-            let simpleInterest = ((principal * rate * time) / 100).toFixed(3);
-            let totalAmount = (principal -+- simpleInterest).toFixed(3);
-
-            document.getElementById("answer").innerHTML = ` Total Interest = ${simpleInterest} and Total Amount = ${totalAmount}`;
-        }
-    </script>
-
+    <script src="/scripts/calculator.js"></script>
 </body>
 
 </html>

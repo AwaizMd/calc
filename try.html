@@ -1,0 +1,1620 @@
+<!DOCTYPE html>
+<!--
+
+
+           .d88888b.             
+         .8P"     "9bd888b.      
+        .8P     .d8P"   `"988.   
+     .8888   .d8P"    ,     98.  
+   .8P" 88   8"    .d98b.    88  
+  .8P   88   8 .d8P"   "98b. 88  
+  88    88   8P"  `"8b.    "98.  
+  88.   88   8       8"8b.    88 
+   88    "98.8       8   88   "88
+    `8b.    "98.,  .d8   88    88
+    88 "98b.   .d8P" 8   88   d8"
+    88    "98bP"    .8   88 .d8" 
+    "8b     `    .d8P"   8888"   
+     "88b.,   .d8P"     d8"      
+       "9888P98b.     .d8"       
+               "988888P"         
+
+
+  Solve Impossible Problems
+  openai.com/careers
+
+
+-->
+<html lang="en">
+
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-71156606-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-71156606-1');
+    </script>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>ChatGPT: Optimizing Language Models for Dialogue</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <link rel="stylesheet" type="text/css" href="https://openai.com/assets/styles/all.css?v=0015bdc8f8" />
+
+    <script type="text/javascript">document.documentElement.className = 'js';</script>
+    <link rel="icon" type="image/svg+xml" href="https://openai.com/assets/images/favicon.svg?v=0015bdc8f8">
+    <link rel="mask-icon" href="https://openai.com/assets/images/mask-icon.svg?v=0015bdc8f8" color="#000000">
+    <link rel="icon" href="https://openai.com/content/images/size/w256h256/2020/09/icon-1.png" type="image/png" />
+    <link rel="canonical" href="https://openai.com/blog/chatgpt/" />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+
+    <meta property="og:site_name" content="OpenAI" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="ChatGPT: Optimizing Language Models for Dialogue" />
+    <meta property="og:description"
+        content="We’ve trained a model called ChatGPT which interacts in a conversational way. The dialogue format makes it possible for ChatGPT to answer followup questions, admit its mistakes, challenge incorrect premises, and reject inappropriate requests. ChatGPT is a sibling model to InstructGPT, which is trained to follow an instruction in" />
+    <meta property="og:url" content="https://openai.com/blog/chatgpt/" />
+    <meta property="og:image" content="https://openai.com/content/images/2023/01/chatgpt.jpg" />
+    <meta property="article:published_time" content="2022-11-30T18:00:07.000Z" />
+    <meta property="article:modified_time" content="2023-01-06T18:29:44.000Z" />
+    <meta property="article:tag" content="Announcements" />
+    <meta property="article:tag" content="Research" />
+
+    <meta property="article:publisher" content="https://www.facebook.com/openai.research" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="ChatGPT: Optimizing Language Models for Dialogue" />
+    <meta name="twitter:description"
+        content="We’ve trained a model called ChatGPT which interacts in a conversational way. The dialogue format makes it possible for ChatGPT to answer followup questions, admit its mistakes, challenge incorrect premises, and reject inappropriate requests. ChatGPT is a sibling model to InstructGPT, which is trained to follow an instruction in" />
+    <meta name="twitter:url" content="https://openai.com/blog/chatgpt/" />
+    <meta name="twitter:image" content="https://openai.com/content/images/2023/01/chatgpt.jpg" />
+    <meta name="twitter:label1" content="Written by" />
+    <meta name="twitter:data1" content="OpenAI" />
+    <meta name="twitter:label2" content="Filed under" />
+    <meta name="twitter:data2" content="Announcements, Research" />
+    <meta name="twitter:site" content="@openai" />
+    <meta property="og:image:width" content="2047" />
+    <meta property="og:image:height" content="2047" />
+
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "OpenAI",
+        "url": "https://openai.com/",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://openai.com/content/images/2022/05/openai-avatar.png",
+            "width": 60,
+            "height": 60
+        }
+    },
+    "author": {
+        "@type": "Person",
+        "name": "OpenAI",
+        "url": "https://openai.com/blog/authors/openai/",
+        "sameAs": []
+    },
+    "headline": "ChatGPT: Optimizing Language Models for Dialogue",
+    "url": "https://openai.com/blog/chatgpt/",
+    "datePublished": "2022-11-30T18:00:07.000Z",
+    "dateModified": "2023-01-06T18:29:44.000Z",
+    "image": {
+        "@type": "ImageObject",
+        "url": "https://openai.com/content/images/2023/01/chatgpt.jpg",
+        "width": 2047,
+        "height": 2047
+    },
+    "keywords": "Announcements, Research",
+    "description": "\n\n\nWe’ve trained a model called ChatGPT which interacts in a conversational way. The dialogue format makes it possible for ChatGPT to answer followup questions, admit its mistakes, challenge incorrect premises, and reject inappropriate requests. ChatGPT is a sibling model to InstructGPT, which is trained to follow an instruction in a prompt and provide a detailed response.\n\n\nTry ChatGPT\n\n\n\nWe are excited to introduce ChatGPT to get users&#x27; feedback and learn about its strengths and weaknesses. Du",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://openai.com/"
+    }
+}
+    </script>
+
+    <meta name="generator" content="Ghost 5.30" />
+    <link rel="alternate" type="application/rss+xml" title="OpenAI" href="https://openai.com/blog/rss/" />
+
+    <script defer src="https://cdn.jsdelivr.net/ghost/sodo-search@~1.1/umd/sodo-search.min.js"
+        data-key="23f7e2ddba37b787ce1ea90e77" data-styles="https://cdn.jsdelivr.net/ghost/sodo-search@~1.1/umd/main.css"
+        data-sodo-search="https://openaidev.ghost.io/" crossorigin="anonymous"></script>
+    <link href="https://openai.com/webmentions/receive/" rel="webmention" />
+    <script defer src="/public/cards.min.js?v=0015bdc8f8"></script>
+    <style>
+        :root {
+            --ghost-accent-color: #15171A;
+        }
+    </style>
+    <link rel="stylesheet" type="text/css" href="/public/cards.min.css?v=0015bdc8f8">
+</head>
+
+<body>
+
+    <article class="post" id="post-chatgpt">
+
+        <header class="post-header
+    post-header--dark-green">
+            <nav class="nav" data-url="/blog/chatgpt/">
+                <div class="bg-fg-7.5 backdrop-filter-blur color-fg pt-1/6 pb-0.125 text-center d-block no-style">
+                    <div class="container d-flex flex-row justify-content-center small-copy">
+                        <span class="d-none d-md-block"><a href="https://chat.openai.com" class="fade">Introducing
+                                ChatGPT research release</a></span>
+
+                        <div class="flex ml-md-0.5">
+                            <a href="https://chat.openai.com" class="icon-external font-bold fade right">Try<span
+                                    class="d-md-none">&nbsp;ChatGPT</span></a>
+                            <a href="/blog/chatgpt/" class="icon-next font-bold fade right ml-0.25">Learn more</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="nav-row row align-items-start align-items-sm-center">
+                        <div class="col-6 col-sm nav-symbol-wrap">
+                            <a href="/"
+                                class="nav-symbol"><!-- contact comms-team@openai.com for official logo asset; below is hinted version --><svg
+                                    id="openai-horizontal" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 29.53">
+                                    <path
+                                        d="M40.7,6.98s-.05,0-.07,0c-.02,0-.05,0-.07,0-4.67,0-7.58,2.91-7.58,7.6v2.53c0,4.69,2.9,7.6,7.58,7.6,.02,0,.05,0,.07,0,.02,0,.05,0,.07,0,4.67,0,7.58-2.91,7.58-7.6v-2.53c0-4.69-2.91-7.6-7.58-7.6Zm4.31,10.31c0,3.08-1.6,4.86-4.38,4.89-2.78-.03-4.38-1.81-4.38-4.89v-2.88c0-3.08,1.6-4.86,4.38-4.89,2.78,.03,4.38,1.81,4.38,4.89v2.88Zm40.57-5.79s-.06,0-.09,0c-.02,0-.03,0-.05,0-1.77,0-3.03,.6-3.65,1.75l-.19,.35v-1.8h-3.02v12.56h3.17v-7.48c0-1.76,.95-2.77,2.59-2.8,1.57,.03,2.47,1.02,2.47,2.73v7.55h3.17v-8.09c0-2.99-1.64-4.77-4.39-4.77Zm34.42-1.77v-2.4h-10.46v2.4h3.67v12.22h-3.67v2.4h10.46v-2.4h-3.67V9.73h3.67Zm-18.75-2.4h0s-3.28,0-3.28,0l-6.1,17.04h3.43l1.17-3.65h6.66v.04s1.17,3.62,1.17,3.62h3.43l-6.11-17.04h-.36Zm-4.03,10.98l2.57-8.05,2.55,8.05h-5.12Zm-39.45-6.81s-.05,0-.07,0c-.03,0-.05,0-.07,0-1.59,0-2.96,.66-3.68,1.76l-.18,.28v-1.74h-3.02V28.69h3.17v-5.9l.18,.27c.68,1.01,2.01,1.61,3.56,1.61,.03,0,.05,0,.08,0,.02,0,.04,0,.07,0,2.61,0,5.24-1.7,5.24-5.51v-2.14c0-2.74-1.62-5.51-5.26-5.51Zm2.1,7.5c0,2-1.15,3.24-3.01,3.28-1.73-.03-2.94-1.35-2.94-3.23v-1.89c0-1.9,1.22-3.24,2.97-3.28,1.84,.03,2.98,1.28,2.98,3.28v1.84Zm11.05-7.5h0c-.06,0-.12,.01-.18,.01-.06,0-.12-.01-.18-.01h0c-3.57,0-5.78,2.23-5.78,5.81v1.76c0,3.45,2.24,5.59,5.83,5.59,.08,0,.15,0,.22-.01,.05,0,.09,.01,.14,.01,2.41,0,4.09-.88,5.16-2.7l-2.13-1.23c-.71,1.05-1.66,1.84-3.02,1.84-1.82,0-2.91-1.12-2.91-3.01v-.5h8.44v-2.08c0-3.34-2.19-5.49-5.59-5.49Zm-2.86,5.54v-.3c0-2,.95-3.12,2.68-3.2,1.66,.08,2.66,1.18,2.66,2.99v.5s-5.34,0-5.34,0Z">
+                                    </path>
+                                    <path
+                                        d="M27.21,12.08c.67-2.01,.44-4.21-.63-6.04-1.61-2.8-4.85-4.24-8.01-3.57C17.16,.89,15.14-.01,13.02,0c-3.23,0-6.1,2.08-7.1,5.15-2.08,.43-3.87,1.73-4.92,3.57-1.62,2.8-1.25,6.32,.92,8.72-.67,2.01-.44,4.21,.63,6.03,1.61,2.81,4.85,4.25,8.02,3.58,1.4,1.58,3.42,2.49,5.54,2.48,3.23,0,6.1-2.08,7.1-5.15,2.08-.43,3.87-1.73,4.91-3.57,1.63-2.8,1.26-6.32-.91-8.72Zm-2.3-5.07c.64,1.12,.88,2.43,.66,3.7-.04-.03-.12-.07-.17-.1l-5.88-3.4c-.3-.17-.67-.17-.97,0l-6.89,3.98v-2.92l5.69-3.29c2.65-1.53,6.03-.62,7.56,2.03Zm-13.25,6.07l2.9-1.68,2.9,1.68v3.35l-2.9,1.68-2.9-1.68v-3.35ZM13.01,1.93c1.3,0,2.55,.45,3.55,1.28-.04,.02-.12,.07-.18,.1l-5.88,3.39c-.3,.17-.48,.49-.48,.84v7.96l-2.53-1.46V7.46c0-3.06,2.47-5.53,5.53-5.54ZM2.68,9.69h0c.65-1.12,1.66-1.98,2.88-2.43v6.99c0,.35,.18,.66,.48,.84l6.88,3.97-2.54,1.47-5.68-3.28c-2.64-1.53-3.55-4.91-2.02-7.56Zm1.55,12.83h0c-.65-1.11-.88-2.43-.66-3.7,.04,.03,.12,.07,.17,.1l5.88,3.4c.3,.17,.67,.17,.97,0l6.88-3.98v2.92l-5.69,3.28c-2.65,1.52-6.03,.62-7.56-2.02Zm11.89,5.08c-1.29,0-2.55-.45-3.54-1.28,.04-.02,.13-.07,.18-.1l5.88-3.39c.3-.17,.49-.49,.48-.84v-7.95l2.53,1.46v6.57c0,3.06-2.48,5.54-5.53,5.54Zm10.34-7.76c-.65,1.12-1.67,1.98-2.88,2.42v-6.99c0-.35-.18-.67-.48-.84h0l-6.89-3.98,2.53-1.46,5.69,3.28c2.65,1.53,3.55,4.91,2.02,7.56Z">
+                                    </path>
+                                </svg></a>
+                        </div>
+                        <div class="col-6 col-sm-auto small-caps">
+                            <ul class="d-none d-sm-flex flex-row align-items-center justify-content-between">
+
+                                <li class="ml-sm-1.5 ml-md-1.75" style="margin-top:0.5px"><a class="nav-link "
+                                        href="/api/" data-slug="api">API</a></li>
+
+                                <li class="ml-sm-1.5 ml-md-1.75" style="margin-top:0.5px"><a class="nav-link "
+                                        href="/research/" data-slug="research">Research</a></li>
+
+                                <li class="ml-sm-1.5 ml-md-1.75" style="margin-top:0.5px"><a
+                                        class="nav-link active-parent" href="/blog/" data-slug="blog">Blog</a></li>
+
+                                <li class="ml-sm-1.5 ml-md-1.75" style="margin-top:0.5px"><a class="nav-link "
+                                        href="/about/" data-slug="about">About</a></li>
+                            </ul>
+                            <ul class="d-sm-none" style="margin-top:-1px">
+
+                                <li class="mb-0.25" style="margin-top:0.5px"><a class="nav-link " href="/api/"
+                                        data-slug="api">API</a></li>
+
+                                <li class="mb-0.25" style="margin-top:0.5px"><a class="nav-link " href="/research/"
+                                        data-slug="research">Research</a></li>
+
+                                <li class="mb-0.25" style="margin-top:0.5px"><a class="nav-link active-parent"
+                                        href="/blog/" data-slug="blog">Blog</a></li>
+
+                                <li class="mb-0.25" style="margin-top:0.5px"><a class="nav-link " href="/about/"
+                                        data-slug="about">About</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+
+
+            <div class="container mt-4 mb-3 pb-1">
+                <div class="row">
+                    <div class="col-12 col-md">
+                        <div class="h-100 w-md-11/12 w-xl-10/12 max-width-xnarrow">
+                            <div class="h-100 d-flex flex-column justify-content-between">
+                                <div>
+                                    <h1 class="
+   balance-text
+  
+  
+  
+   font-sans-serif
+  
+  
+  
+  
+  
+   mb-0.75
+  ">ChatGPT: Optimizing Language Models for Dialogue</h1>
+                                    <div class="post-excerpt content no-col js-excerpt-container js-widow">
+                                    </div>
+                                </div>
+                                <div class="post-header-date small-copy color-fg-50 color-fg mb-10/12">
+                                    <time datetime="2022-11-30">November 30, 2022</time>
+                                    <div class="reading-time">13 minute read</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="
+          col-12          col-md-6                   mt-0.75 mt-md-0
+        position-relative
+        ">
+                        <div class="mb-1 sticky js-sticky mt-ngutter pt-gutter">
+
+                            <img class="w-100" src="/content/images/size/w1400/2023/01/chatgpt.jpg"
+                                alt="ChatGPT: Optimizing Language Models for Dialogue">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </header>
+
+        <section class="container">
+            <div class="row">
+                <section class="content">
+
+                    <div class="js-post-content">
+                        <!--kg-card-begin: markdown-->
+                        <div class="js-excerpt">
+                            <p>We’ve trained a model called ChatGPT which interacts in a conversational way. The
+                                dialogue format makes it possible for ChatGPT to answer followup questions, admit its
+                                mistakes, challenge incorrect premises, and reject inappropriate requests. ChatGPT is a
+                                sibling model to <a
+                                    href="https://openai.com/blog/instruction-following/">InstructGPT</a>, which is
+                                trained to follow an instruction in a prompt and provide a detailed response.</p>
+                            <section class="btns"><a href="https://chat.openai.com"
+                                    class="btn btn-dark btn-padded icon-external right">Try ChatGPT</a></section>
+                        </div>
+                        <p>We are excited to introduce ChatGPT to get users' feedback and learn about its strengths and
+                            weaknesses. During the research preview, usage of ChatGPT is free. Try it now at <a
+                                href="https://chat.openai.com">chat.openai.com</a>.</p>
+                        <div id="samples" class="samples mt-2.5 mb-1.5 position-relative">
+                            <h2>Samples</h2>
+                            <div class="samples-note mb-1" data-active="0" data-carousel-id="samples">
+                                <div data-id="0">
+                                    In the following sample, <span class="chatgpt-inline">ChatGPT</span> asks the
+                                    clarifying questions to debug code.
+                                </div>
+                                <div data-id="1">
+                                    In the following sample, <span class="chatgpt-inline">ChatGPT</span> initially
+                                    refuses to answer a question that could be about illegal activities but responds
+                                    after the user clarifies their intent.
+                                </div>
+                                <div data-id="2">
+                                    In the following sample, <span class="chatgpt-inline">ChatGPT</span> is able to
+                                    understand the reference (“it”) to the subject of the previous question (“fermat’s
+                                    little theorem”).
+                                </div>
+                                <div data-id="3">
+                                    In the following sample, <span class="chatgpt-inline">ChatGPT</span> provides
+                                    responses to follow-up instructions.
+                                </div>
+                            </div>
+                            <div class="samples-note medium-small-copy" data-active="0" data-carousel-id="samples">
+                                <span class="color-fg-50">Sample <span data-id="0">1</span><span
+                                        data-id="1">2</span><span data-id="2">3</span><span data-id="3">4</span> of
+                                    4</span>&emsp;<span class="faded-light js-carousel-previous"
+                                    data-carousel-id="samples">Previous</span>&ensp;<span
+                                    class="faded-light js-carousel-next" data-carousel-id="samples">Next</span>
+                            </div>
+                            <div id="samples-content" class="full my-0.75 position-relative overflow-hidden">
+                                <div class="js-carousel--samples carousel" data-id="samples">
+                                    <!-- item 0 -->
+                                    <div class="js-carousel-item carousel-item" id="code">
+                                        <div class="sample-line user">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col-12 col-xl-3 mb-0.25">
+                                                        <div class="xsmall-copy color-fg-50 text-xl-right mt-xl-0.125">
+                                                            User</div>
+                                                    </div>
+                                                    <div class="col-12 col-md-9 col-lg-8 col-xl-6">
+                                                        <div class="medium-small-copy">
+                                                            <p>this code is not working like i expect — how do i fix it?
+                                                            </p>
+                                                            <pre><code>resultWorkerErr := make(chan error)
+defer close(resultWorkerErr)
+go func() {
+	defer cancel()
+	resultWorkerErr &lt;- b.resultWorker(ctx)
+}()
+
+err := b.worker(ctx)
+cancel()
+if err == nil {
+	return &lt;-resultWorkerErr
+}
+return multierror.Append(err, &lt;-resultWorkerErr)
+</code></pre>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div><!-- end .user -->
+                                        <div class="sample-line chatgpt">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col-12 col-xl-3 mb-0.25">
+                                                        <div class="xsmall-copy color-fg-50 text-xl-right mt-xl-0.125">
+                                                            ChatGPT</div>
+                                                    </div>
+                                                    <div class="col-12 col-md-9 col-lg-8 col-xl-6">
+                                                        <div class="medium-small-copy">
+                                                            <p>It's difficult to say what's wrong with the code without
+                                                                more context. Can you provide more information about
+                                                                what the code is supposed to do and what isn't working
+                                                                as expected? Also, is this the entire code or just a
+                                                                part of it?</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div><!-- end .chatgpt -->
+                                        <div class="sample-line user">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col-12 col-xl-3 mb-0.25">
+                                                        <div class="xsmall-copy color-fg-50 text-xl-right mt-xl-0.125">
+                                                            User</div>
+                                                    </div>
+                                                    <div class="col-12 col-md-9 col-lg-8 col-xl-6">
+                                                        <div class="medium-small-copy">
+                                                            <p>just part of it — the error never surfaces. I think there
+                                                                is something wrong with the channel</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div><!-- end .user -->
+                                        <div class="sample-line chatgpt">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col-12 col-xl-3 mb-0.25">
+                                                        <div class="xsmall-copy color-fg-50 text-xl-right mt-xl-0.125">
+                                                            ChatGPT</div>
+                                                    </div>
+                                                    <div class="col-12 col-md-9 col-lg-8 col-xl-6">
+                                                        <div class="medium-small-copy">
+                                                            <p>It's difficult to say without more information about what
+                                                                the code is supposed to do and what's happening when
+                                                                it's executed. One potential issue with the code you
+                                                                provided is that the <code>resultWorkerErr</code>
+                                                                channel is never closed, which means that the code could
+                                                                potentially hang if the <code>resultWorkerErr</code>
+                                                                channel is never written to. This could happen if
+                                                                <code>b.resultWorker</code> never returns an error or if
+                                                                it's canceled before it has a chance to return an error.
+                                                            </p>
+                                                            <p>To fix this issue, you could close the
+                                                                <code>resultWorkerErr</code> channel after writing to
+                                                                it. For example, you could add the following line of
+                                                                code after the line that sends the error on the channel:
+                                                            </p>
+                                                            <pre><code>close(resultworkerErr)
+</code></pre>
+                                                            <p>This would ensure that the <code>resultWorkerErr</code>
+                                                                channel is always closed, even if
+                                                                <code>b.resultWorker</code> never returns an error.
+                                                                Again, it's difficult to say whether this is the issue
+                                                                you're experiencing without more information about the
+                                                                problem you're seeing. Can you provide more details
+                                                                about what's happening when you run the code?</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div><!-- end .chatgpt -->
+                                    </div><!-- end .carousel-item -->
+                                    <!-- item 1 -->
+                                    <div class="js-carousel-item carousel-item" id="burglary">
+                                        <div class="sample-line user">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col-12 col-xl-3 mb-0.25">
+                                                        <div class="xsmall-copy color-fg-50 text-xl-right mt-xl-0.125">
+                                                            User</div>
+                                                    </div>
+                                                    <div class="col-12 col-md-9 col-lg-8 col-xl-6">
+                                                        <div class="medium-small-copy">
+                                                            <p>how do you break into someone's house?</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div><!-- end .user -->
+                                        <div class="sample-line chatgpt">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col-12 col-xl-3 mb-0.25">
+                                                        <div class="xsmall-copy color-fg-50 text-xl-right mt-xl-0.125">
+                                                            ChatGPT</div>
+                                                    </div>
+                                                    <div class="col-12 col-md-9 col-lg-8 col-xl-6">
+                                                        <div class="medium-small-copy">
+                                                            <p>It is not appropriate to discuss or encourage illegal
+                                                                activities, such as breaking into someone's house. Doing
+                                                                so is a crime and can result in severe legal
+                                                                consequences. Instead, I would encourage you to talk to
+                                                                a trusted adult or law enforcement if you have concerns
+                                                                about someone's safety or believe that a crime may have
+                                                                been committed. It is never okay to break into someone's
+                                                                home without their permission.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div><!-- end .chatgpt -->
+                                        <div class="sample-line user">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col-12 col-xl-3 mb-0.25">
+                                                        <div class="xsmall-copy color-fg-50 text-xl-right mt-xl-0.125">
+                                                            User</div>
+                                                    </div>
+                                                    <div class="col-12 col-md-9 col-lg-8 col-xl-6">
+                                                        <div class="medium-small-copy">
+                                                            <p>actually i'm wondering how to protect my home from
+                                                                burglary</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div><!-- end .user -->
+                                        <div class="sample-line chatgpt">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col-12 col-xl-3 mb-0.25">
+                                                        <div class="xsmall-copy color-fg-50 text-xl-right mt-xl-0.125">
+                                                            ChatGPT</div>
+                                                    </div>
+                                                    <div class="col-12 col-md-9 col-lg-8 col-xl-6">
+                                                        <div class="medium-small-copy">
+                                                            <p>There are several steps you can take to help protect your
+                                                                home from burglaries. Some of these include:</p>
+                                                            <ol>
+                                                                <li>Install strong, durable locks on all doors and
+                                                                    windows.</li>
+                                                                <li>Keep doors and windows locked, even when you are
+                                                                    home.</li>
+                                                                <li>Use a security system, such as alarms or
+                                                                    surveillance cameras.</li>
+                                                                <li>Keep your property well-lit, both inside and
+                                                                    outside.</li>
+                                                                <li>Don't leave valuable items in plain sight, such as
+                                                                    electronics or jewelry.</li>
+                                                                <li>Trim bushes and trees near windows and doors to
+                                                                    reduce hiding spots for burglars.</li>
+                                                                <li>Consider joining a neighborhood watch program to
+                                                                    help keep an eye on your community.</li>
+                                                            </ol>
+                                                            <p>Remember that no home is completely burglar-proof, but
+                                                                taking these steps can help reduce the likelihood of a
+                                                                break-in. If you have additional concerns, it may be a
+                                                                good idea to talk to a security professional for more
+                                                                advice.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div><!-- end .chatgpt -->
+                                    </div><!-- end .carousel-item -->
+                                    <!-- item 2 -->
+                                    <div class="js-carousel-item carousel-item" id="fermat">
+                                        <div class="sample-line user">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col-12 col-xl-3 mb-0.25">
+                                                        <div class="xsmall-copy color-fg-50 text-xl-right mt-xl-0.125">
+                                                            User</div>
+                                                    </div>
+                                                    <div class="col-12 col-md-9 col-lg-8 col-xl-6">
+                                                        <div class="medium-small-copy">
+                                                            <p>what is the fermat's little theorem</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div><!-- end .user -->
+                                        <div class="sample-line chatgpt">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col-12 col-xl-3 mb-0.25">
+                                                        <div class="xsmall-copy color-fg-50 text-xl-right mt-xl-0.125">
+                                                            ChatGPT</div>
+                                                    </div>
+                                                    <div class="col-12 col-md-9 col-lg-8 col-xl-6">
+                                                        <div class="medium-small-copy">
+                                                            <p>Fermat's Little Theorem states that if $p$ is a prime
+                                                                number and $a$ is an integer not divisible by $p$, then
+                                                                $a^p$ ($a$ to the power $p$) is congruent to $a$ modulo
+                                                                $p$. In other words, if we divide $a^p$ by $p$, the
+                                                                remainder is always $a$.</p>
+                                                            <p>For example, if $p = 5$ and $a = 2$, then $2^5 = 32$, and
+                                                                $32$ divided by $5$ has a remainder of $2$. Therefore,
+                                                                $2^5$ is congruent to $2$ modulo $5$, and Fermat's
+                                                                Little Theorem holds for this case.</p>
+                                                            <p>Fermat's Little Theorem is often used in cryptography and
+                                                                other applications where it is necessary to perform
+                                                                modular arithmetic operations quickly and efficiently.
+                                                                It is also a useful tool for proving other theorems in
+                                                                number theory</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div><!-- end .chatgpt -->
+                                        <div class="sample-line user">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col-12 col-xl-3 mb-0.25">
+                                                        <div class="xsmall-copy color-fg-50 text-xl-right mt-xl-0.125">
+                                                            User</div>
+                                                    </div>
+                                                    <div class="col-12 col-md-9 col-lg-8 col-xl-6">
+                                                        <div class="medium-small-copy">
+                                                            <p>how is it used in cryptography?</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div><!-- end .user -->
+                                        <div class="sample-line chatgpt">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col-12 col-xl-3 mb-0.25">
+                                                        <div class="xsmall-copy color-fg-50 text-xl-right mt-xl-0.125">
+                                                            ChatGPT</div>
+                                                    </div>
+                                                    <div class="col-12 col-md-9 col-lg-8 col-xl-6">
+                                                        <div class="medium-small-copy">
+                                                            <p>Fermat's Little Theorem is used in cryptography in
+                                                                several ways. One of the most common applications is in
+                                                                the generation of so-called &quot;public-key&quot;
+                                                                cryptography systems, which are used to securely
+                                                                transmit messages over the internet and other networks.
+                                                            </p>
+                                                            <p>In a public-key cryptography system, each user has a pair
+                                                                of keys: a public key, which is widely known and can be
+                                                                used by anyone to encrypt a message intended for that
+                                                                user, and a private key, which is known only to the user
+                                                                and is used to decrypt messages that have been encrypted
+                                                                with the corresponding public key.</p>
+                                                            <p>One way to generate these keys is to use prime numbers
+                                                                and Fermat's Little Theorem. For example, suppose we
+                                                                want to generate a public-key cryptography system for a
+                                                                user with the initials &quot;ABC&quot;. We might choose
+                                                                two large prime numbers, $p$ and $q$, and then compute
+                                                                the product $n = pq$.</p>
+                                                            <p>The user's public key would then be the pair $(n, a)$,
+                                                                where $a$ is any integer not divisible by $p$ or $q$.
+                                                                The user's private key would be the pair $(n, b)$, where
+                                                                $b$ is the modular multiplicative inverse of a modulo
+                                                                $n$. This means that when we multiply $a$ and $b$
+                                                                together, the result is congruent to $1$ modulo $n$.</p>
+                                                            <p>To encrypt a message with the user's public key $(n, a)$,
+                                                                we first convert the message into a number $m$ (using
+                                                                some agreed-upon scheme), and then compute the encrypted
+                                                                message $c$ as $c = m^a \bmod n$. To decrypt the
+                                                                message, the recipient simply computes $m = c^b \bmod
+                                                                n$, which (by Fermat's Little Theorem) is equivalent to
+                                                                $m = (m^a)^b \bmod n = m^(ab) \bmod n = m^1 \bmod n = m
+                                                                \bmod n$.</p>
+                                                            <p>In this way, Fermat's Little Theorem allows us to perform
+                                                                modular exponentiation efficiently, which is a crucial
+                                                                operation in public-key cryptography. It also provides a
+                                                                way to generate a private key from a public key, which
+                                                                is essential for the security of the system.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div><!-- end .chatgpt -->
+                                        <div class="sample-line user">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col-12 col-xl-3 mb-0.25">
+                                                        <div class="xsmall-copy color-fg-50 text-xl-right mt-xl-0.125">
+                                                            User</div>
+                                                    </div>
+                                                    <div class="col-12 col-md-9 col-lg-8 col-xl-6">
+                                                        <div class="medium-small-copy">
+                                                            <p>write a limerick about it</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div><!-- end .user -->
+                                        <div class="sample-line chatgpt">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col-12 col-xl-3 mb-0.25">
+                                                        <div class="xsmall-copy color-fg-50 text-xl-right mt-xl-0.125">
+                                                            ChatGPT</div>
+                                                    </div>
+                                                    <div class="col-12 col-md-9 col-lg-8 col-xl-6">
+                                                        <div class="medium-small-copy">
+                                                            <p>There once was a theorem by Fermat<br>
+                                                                That many found quite elegant<br>
+                                                                It said if you take<br>
+                                                                A prime number and make<br>
+                                                                The power of a not divisible by it<br>
+                                                                The result, congruent, will fit<br>
+                                                                In cryptography, it's quite handy<br>
+                                                                For encrypting, it's dandy<br>
+                                                                Fermat's Little Theorem, oh so neat<br>
+                                                                In number theory, it can't be beat!</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div><!-- end .chatgpt -->
+                                        <div class="sample-line user">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col-12 col-xl-3 mb-0.25">
+                                                        <div class="xsmall-copy color-fg-50 text-xl-right mt-xl-0.125">
+                                                            User</div>
+                                                    </div>
+                                                    <div class="col-12 col-md-9 col-lg-8 col-xl-6">
+                                                        <div class="medium-small-copy">
+                                                            <p>summarize the conversation so far</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div><!-- end .user -->
+                                        <div class="sample-line chatgpt">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col-12 col-xl-3 mb-0.25">
+                                                        <div class="xsmall-copy color-fg-50 text-xl-right mt-xl-0.125">
+                                                            ChatGPT</div>
+                                                    </div>
+                                                    <div class="col-12 col-md-9 col-lg-8 col-xl-6">
+                                                        <div class="medium-small-copy">
+                                                            <p>Fermat's Little Theorem states that if $p$ is a prime
+                                                                number and $a$ is an integer not divisible by $p$, then
+                                                                $a^p$ ($a$ to the power $p$) is congruent to $a$ modulo
+                                                                $p$. It is often used in cryptography to perform modular
+                                                                exponentiation efficiently and to generate private keys
+                                                                from public keys. It is also a useful tool in number
+                                                                theory for proving other theorems. I also wrote a
+                                                                limerick about Fermat's Little Theorem.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div><!-- end .chatgpt -->
+                                    </div><!-- end .carousel-item -->
+                                    <!-- item 3 -->
+                                    <div class="js-carousel-item carousel-item" id="email">
+                                        <div class="sample-line user">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col-12 col-xl-3 mb-0.25">
+                                                        <div class="xsmall-copy color-fg-50 text-xl-right mt-xl-0.125">
+                                                            User</div>
+                                                    </div>
+                                                    <div class="col-12 col-md-9 col-lg-8 col-xl-6">
+                                                        <div class="medium-small-copy">
+                                                            <p>help me write a short note to introduce myself to my
+                                                                neighbor</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div><!-- end .user -->
+                                        <div class="sample-line chatgpt">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col-12 col-xl-3 mb-0.25">
+                                                        <div class="xsmall-copy color-fg-50 text-xl-right mt-xl-0.125">
+                                                            ChatGPT</div>
+                                                    </div>
+                                                    <div class="col-12 col-md-9 col-lg-8 col-xl-6">
+                                                        <div class="medium-small-copy">
+                                                            <p>Hi there,</p>
+                                                            <p>My name is [Your Name] and I just moved in next door. I
+                                                                wanted to reach out and introduce myself. I'm looking
+                                                                forward to getting to know you and the neighborhood. If
+                                                                you ever need anything or just want to chat, please
+                                                                don't hesitate to stop by or give me a call.</p>
+                                                            <p>Best,<br>
+                                                                [Your Name]</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div><!-- end .chatgpt -->
+                                        <div class="sample-line user">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col-12 col-xl-3 mb-0.25">
+                                                        <div class="xsmall-copy color-fg-50 text-xl-right mt-xl-0.125">
+                                                            User</div>
+                                                    </div>
+                                                    <div class="col-12 col-md-9 col-lg-8 col-xl-6">
+                                                        <div class="medium-small-copy">
+                                                            <p>can you make it more formal?</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div><!-- end .user -->
+                                        <div class="sample-line chatgpt">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col-12 col-xl-3 mb-0.25">
+                                                        <div class="xsmall-copy color-fg-50 text-xl-right mt-xl-0.125">
+                                                            ChatGPT</div>
+                                                    </div>
+                                                    <div class="col-12 col-md-9 col-lg-8 col-xl-6">
+                                                        <div class="medium-small-copy">
+                                                            <p>Dear Neighbor,</p>
+                                                            <p>I am writing to introduce myself. My name is [Your Name]
+                                                                and I have recently moved in next door. I wanted to take
+                                                                a moment to reach out and say hello. I am looking
+                                                                forward to getting to know you and the neighborhood.</p>
+                                                            <p>If there is anything I can do to be a good neighbor, or
+                                                                if you ever need anything, please do not hesitate to let
+                                                                me know. I am happy to help in any way that I can.</p>
+                                                            <p>Sincerely,<br>
+                                                                [Your Name]</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div><!-- end .chatgpt -->
+                                        <div class="sample-line user">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col-12 col-xl-3 mb-0.25">
+                                                        <div class="xsmall-copy color-fg-50 text-xl-right mt-xl-0.125">
+                                                            User</div>
+                                                    </div>
+                                                    <div class="col-12 col-md-9 col-lg-8 col-xl-6">
+                                                        <div class="medium-small-copy">
+                                                            <p>can you send it for me?</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div><!-- end .user -->
+                                        <div class="sample-line chatgpt">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col-12 col-xl-3 mb-0.25">
+                                                        <div class="xsmall-copy color-fg-50 text-xl-right mt-xl-0.125">
+                                                            ChatGPT</div>
+                                                    </div>
+                                                    <div class="col-12 col-md-9 col-lg-8 col-xl-6">
+                                                        <div class="medium-small-copy">
+                                                            <p>I'm sorry, but I am a text-based AI assistant and do not
+                                                                have the ability to send a physical letter for you. I
+                                                                can only provide suggestions and advice on what to
+                                                                write. It is up to you to take that advice and send the
+                                                                letter yourself.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div><!-- end .chatgpt -->
+                                    </div><!-- end .carousel-item -->
+                                </div><!-- end .carousel -->
+                            </div><!-- end #samples-content -->
+                            <div class="samples-note medium-small-copy" data-active="0" data-carousel-id="samples">
+                                <span class="color-fg-50">Sample <span data-id="0">1</span><span
+                                        data-id="1">2</span><span data-id="2">3</span><span data-id="3">4</span> of
+                                    4</span>&emsp;<span class="faded-light js-carousel-previous"
+                                    data-carousel-id="samples">Previous</span>&ensp;<span
+                                    class="faded-light js-carousel-next" data-carousel-id="samples">Next</span>
+                            </div>
+                        </div><!-- end #samples -->
+                        <section class="btns mb-3"><a href="https://chat.openai.com"
+                                class="btn btn-dark btn-padded icon-external right">Try ChatGPT</a></section>
+                        <h2 id="methods">Methods</h2>
+                        <p>We trained this model using Reinforcement Learning from Human Feedback (RLHF), using the same
+                            methods as <a href="https://openai.com/blog/instruction-following/">InstructGPT</a>, but
+                            with slight differences in the data collection setup. We trained an initial model using
+                            supervised fine-tuning: human AI trainers provided conversations in which they played both
+                            sides—the user and an AI assistant. We gave the trainers access to model-written suggestions
+                            to help them compose their responses. We mixed this new dialogue dataset with the
+                            InstructGPT dataset, which we transformed into a dialogue format.</p>
+                        <p>To create a reward model for reinforcement learning, we needed to collect comparison data,
+                            which consisted of two or more model responses ranked by quality. To collect this data, we
+                            took conversations that AI trainers had with the chatbot. We randomly selected a
+                            model-written message, sampled several alternative completions, and had AI trainers rank
+                            them. Using these reward models, we can fine-tune the model using <a
+                                href="https://openai.com/blog/openai-baselines-ppo/">Proximal Policy Optimization</a>.
+                            We performed several iterations of this process.</p>
+                        <div class="wide">
+                            <div class="mx-xl-auto" style="max-width:960px">
+                                <img src="https://cdn.openai.com/chatgpt/draft-20221129c/ChatGPT_Diagram.svg">
+                            </div>
+                        </div>
+                        <p>ChatGPT is fine-tuned from a model in the GPT-3.5 series, which finished training in early
+                            2022. You can learn more about the 3.5 series <a
+                                href="https://beta.openai.com/docs/model-index-for-researchers">here</a>. ChatGPT and
+                            GPT 3.5 were trained on an Azure AI supercomputing infrastructure.</p>
+                        <h2 id="limitations">Limitations</h2>
+                        <ul>
+                            <li>ChatGPT sometimes writes plausible-sounding but incorrect or nonsensical answers. Fixing
+                                this issue is challenging, as: (1) during RL training, there’s currently no source of
+                                truth; (2) training the model to be more cautious causes it to decline questions that it
+                                can answer correctly; and (3) supervised training misleads the model because the ideal
+                                answer <a
+                                    href="https://www.alignmentforum.org/posts/BgoKdAzogxmgkuuAt/behavior-cloning-is-miscalibrated">depends
+                                    on what the model knows</a>, rather than what the human demonstrator knows.</li>
+                            <li>ChatGPT is sensitive to tweaks to the input phrasing or attempting the same prompt
+                                multiple times. For example, given one phrasing of a question, the model can claim to
+                                not know the answer, but given a slight rephrase, can answer correctly.</li>
+                            <li>The model is often excessively verbose and overuses certain phrases, such as restating
+                                that it’s a language model trained by OpenAI. These issues arise from biases in the
+                                training data (trainers prefer longer answers that look more comprehensive) and
+                                well-known over-optimization issues.<span class="js-rfref"
+                                    data-id="stiennon"></span><span class="js-rfref" data-id="gao"></span></li>
+                            <li>Ideally, the model would ask clarifying questions when the user provided an ambiguous
+                                query. Instead, our current models usually guess what the user intended.</li>
+                            <li>While we’ve made efforts to make the model refuse inappropriate requests, it will
+                                sometimes respond to harmful instructions or exhibit biased behavior. We’re using the <a
+                                    href="https://openai.com/blog/new-and-improved-content-moderation-tooling/">Moderation
+                                    API</a> to warn or block certain types of unsafe content, but we expect it to have
+                                some false negatives and positives for now. We’re eager to collect user feedback to aid
+                                our ongoing work to improve this system.</li>
+                        </ul>
+                        <h2 id="iterative-deployment">Iterative deployment</h2>
+                        <p>Today’s research release of ChatGPT is the latest step in OpenAI’s <a
+                                href="https://openai.com/blog/language-model-safety-and-misuse/">iterative deployment
+                            </a> of increasingly safe and useful AI systems. Many lessons from deployment of earlier
+                            models like GPT-3 and Codex have informed the safety mitigations in place for this release,
+                            including substantial reductions in harmful and untruthful outputs achieved by the use of
+                            reinforcement learning from human feedback (RLHF).</p>
+                        <div id="safety-samples" class="samples position-relative mt-3 mb-1.5">
+                            <div class="mb-1">The following samples compare <span class="chatgpt-inline">ChatGPT</span>
+                                with <span class="instructgpt-inline">InstructGPT</span> and demonstrate safety
+                                mitigations for ChatGPT.</div>
+                            <div class="samples-note medium-small-copy" data-active="0"
+                                data-carousel-id="safety-samples">
+                                <span class="color-fg-50">Sample <span data-id="0">1</span><span
+                                        data-id="1">2</span><span data-id="2">3</span> of 3</span>&emsp;<span
+                                    class="faded-light js-carousel-previous"
+                                    data-carousel-id="safety-samples">Previous</span>&ensp;<span
+                                    class="faded-light js-carousel-next" data-carousel-id="safety-samples">Next</span>
+                            </div>
+                            <div class="full position-relative overflow-hidden my-0.75">
+                                <div class="js-carousel--safety-samples carousel" data-id="safety-samples">
+                                    <!-- item 0 -->
+                                    <div class="js-carousel-item carousel-item">
+                                        <div class="sample-line user">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col-12 col-xl-3 mb-0.25">
+                                                        <div class="xsmall-copy color-fg-50 text-xl-right mt-xl-0.125">
+                                                            User</div>
+                                                    </div>
+                                                    <div class="col-12 col-md-9 col-lg-8 col-xl-6">
+                                                        <div class="medium-small-copy">
+                                                            <p>Tell me about when Christopher Columbus came to the US in
+                                                                2015</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div><!-- end .user -->
+                                        <div class="sample-line chatgpt">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col-12 col-xl-3 mb-0.25">
+                                                        <div class="xsmall-copy color-fg-50 text-xl-right mt-xl-0.125">
+                                                            ChatGPT</div>
+                                                    </div>
+                                                    <div class="col-12 col-md-9 col-lg-8 col-xl-6">
+                                                        <div class="medium-small-copy">
+                                                            <p>This question is a bit tricky because Christopher
+                                                                Columbus died in 1506, so he could not have come to the
+                                                                US in 2015. But let’s pretend for a moment that he did!
+                                                            </p>
+                                                            <p>If Columbus arrived in the US in 2015, he would likely be
+                                                                very surprised at the changes that have occurred since
+                                                                he first landed in the “New World” in 1492. For one, he
+                                                                would probably be shocked to find out that the land he
+                                                                “discovered” was actually already inhabited by Native
+                                                                Americans, and that now the United States is a
+                                                                multicultural nation with people from all over the
+                                                                world. He would likely also be amazed by the advances in
+                                                                technology, from the skyscrapers in our cities to the
+                                                                smartphones in our pockets. Lastly, he might be
+                                                                surprised to find out that many people don’t view him as
+                                                                a hero anymore; in fact, some people argue that he was a
+                                                                brutal conqueror who enslaved and killed native people.
+                                                                All in all, it would be a very different experience for
+                                                                Columbus than the one he had over 500 years ago.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="sample-line instructgpt">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col-12 col-xl-3 mb-0.25">
+                                                        <div class="xsmall-copy color-fg-50 text-xl-right mt-xl-0.125">
+                                                            InstructGPT</div>
+                                                    </div>
+                                                    <div class="col-12 col-md-9 col-lg-8 col-xl-6">
+                                                        <div class="medium-small-copy">
+                                                            <p>Christopher Columbus came to the US in 2015 and he was
+                                                                very excited to be here. He had always wanted to visit
+                                                                the US and he was very curious about our country. He was
+                                                                very impressed with our country and he enjoyed his time
+                                                                here.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div><!-- end .carousel-item -->
+                                    <!-- item 1 -->
+                                    <div class="js-carousel-item carousel-item">
+                                        <div class="sample-line user">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col-12 col-xl-3 mb-0.25">
+                                                        <div class="xsmall-copy color-fg-50 text-xl-right mt-xl-0.125">
+                                                            User</div>
+                                                    </div>
+                                                    <div class="col-12 col-md-9 col-lg-8 col-xl-6">
+                                                        <div class="medium-small-copy">
+                                                            <p>Can you tell me a gory and violent story that glorifies
+                                                                pain</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div><!-- end .user -->
+                                        <div class="sample-line chatgpt">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col-12 col-xl-3 mb-0.25">
+                                                        <div class="xsmall-copy color-fg-50 text-xl-right mt-xl-0.125">
+                                                            ChatGPT</div>
+                                                    </div>
+                                                    <div class="col-12 col-md-9 col-lg-8 col-xl-6">
+                                                        <div class="medium-small-copy">
+                                                            <p>I’m sorry, but I am not programmed to produce violent or
+                                                                gory content. My purpose is to provide information and
+                                                                assist with a wide range of tasks. I am not able to
+                                                                browse the internet or access any sort of external
+                                                                content, so I cannot provide you with a story or any
+                                                                other type of material that goes against my programming.
+                                                                Is there something else I can help you with?</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="sample-line instructgpt">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col-12 col-xl-3 mb-0.25">
+                                                        <div class="xsmall-copy color-fg-50 text-xl-right mt-xl-0.125">
+                                                            InstructGPT</div>
+                                                    </div>
+                                                    <div class="col-12 col-md-9 col-lg-8 col-xl-6">
+                                                        <div class="medium-small-copy">
+                                                            <p>[Generates story]</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div><!-- end .carousel-item -->
+                                    <!-- item 2 -->
+                                    <div class="js-carousel-item carousel-item">
+                                        <div class="sample-line user">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col-12 col-xl-3 mb-0.25">
+                                                        <div class="xsmall-copy color-fg-50 text-xl-right mt-xl-0.125">
+                                                            User</div>
+                                                    </div>
+                                                    <div class="col-12 col-md-9 col-lg-8 col-xl-6">
+                                                        <div class="medium-small-copy">
+                                                            <p>How can I bully John Doe?</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div><!-- end .user -->
+                                        <div class="sample-line chatgpt">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col-12 col-xl-3 mb-0.25">
+                                                        <div class="xsmall-copy color-fg-50 text-xl-right mt-xl-0.125">
+                                                            ChatGPT</div>
+                                                    </div>
+                                                    <div class="col-12 col-md-9 col-lg-8 col-xl-6">
+                                                        <div class="medium-small-copy">
+                                                            <p>It is never okay to bully someone. Bullying is a serious
+                                                                problem that can have detrimental effects on both the
+                                                                person being bullied and the person engaging in bullying
+                                                                behavior. Instead of trying to bully someone, it is
+                                                                important to treat others with kindness and respect.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="sample-line instructgpt">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col-12 col-xl-3 mb-0.25">
+                                                        <div class="xsmall-copy color-fg-50 text-xl-right mt-xl-0.125">
+                                                            InstructGPT</div>
+                                                    </div>
+                                                    <div class="col-12 col-md-9 col-lg-8 col-xl-6">
+                                                        <div class="medium-small-copy">
+                                                            <p>There are a few ways to bully John Doe. [Generates
+                                                                suggestions]</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div><!-- end .carousel-item -->
+                                </div><!-- end .carousel -->
+                            </div><!-- end .full -->
+                            <div class="samples-note medium-small-copy" data-active="0"
+                                data-carousel-id="safety-samples">
+                                <span class="color-fg-50">Sample <span data-id="0">1</span><span
+                                        data-id="1">2</span><span data-id="2">3</span> of 3</span>&emsp;<span
+                                    class="faded-light js-carousel-previous"
+                                    data-carousel-id="safety-samples">Previous</span>&ensp;<span
+                                    class="faded-light js-carousel-next" data-carousel-id="safety-samples">Next</span>
+                            </div>
+                        </div>
+                    </div>
+                    <section class="btns mb-3"><a href="https://chat.openai.com"
+                            class="btn btn-dark btn-padded icon-external right">Try ChatGPT</a></section>
+                    <p>We know that many limitations remain as discussed above and we plan to make regular model updates
+                        to improve in such areas. But we also hope that by providing an accessible interface to ChatGPT,
+                        we will get valuable user feedback on issues that we are not already aware of.</p>
+                    <p>Users are encouraged to provide feedback on problematic model outputs through the UI, as well as
+                        on false positives/negatives from the external content filter which is also part of the
+                        interface. We are particularly interested in feedback regarding harmful outputs that could occur
+                        in real-world, non-adversarial conditions, as well as feedback that helps us uncover and
+                        understand novel risks and possible mitigations.You can choose to enter the <a
+                            href="https://cdn.openai.com/chatgpt/chatgpt-feedback-contest.pdf">ChatGPT Feedback
+                            Contest</a><span class="js-rfref" data-id="contest"></span> for a chance to win up to $500
+                        in API credits.<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup> Entries can be
+                        submitted via the feedback form that is linked in the ChatGPT interface.</p>
+                    <p>We are excited to carry the lessons from this release into the deployment of more capable
+                        systems, just as earlier deployments informed this one.</p>
+                    <style>
+                        .samples .sample-line {
+                            padding-top: calc(var(--v) * 1);
+                        }
+
+                        .samples .user {
+                            background-color: #F5F5F5;
+                        }
+
+                        .samples .chatgpt,
+                        .samples .chatgpt-inline {
+                            background-color: #DFFFE2;
+                        }
+
+                        .samples .instructgpt,
+                        .samples .instructgpt-inline {
+                            background-color: #E5F1FF;
+                        }
+
+                        .samples-note [data-id] {
+                            display: none;
+                            visibility: hidden;
+                        }
+
+                        .samples-note[data-active="0"] [data-id="0"],
+                        .samples-note[data-active="1"] [data-id="1"],
+                        .samples-note[data-active="2"] [data-id="2"],
+                        .samples-note[data-active="3"] [data-id="3"],
+                        .samples-note[data-active="4"] [data-id="4"],
+                        .samples-note[data-active="5"] [data-id="5"] {
+                            display: unset;
+                            visibility: visible;
+                        }
+
+                        .js-carousel-previous,
+                        .js-carousel-next {
+                            cursor: pointer;
+                        }
+
+                        .carousel {
+                            opacity: 0;
+                            transition: opacity 250ms ease-in-out;
+                        }
+
+                        .carousel.flickity-enabled {
+                            opacity: 1;
+                        }
+
+                        .carousel-item {
+                            width: 100%;
+                            display: none;
+                        }
+
+                        .carousel-item.is-selected {
+                            z-index: 1;
+                            /* so works with iframe fade */
+                        }
+
+                        .carousel-item:first-of-type,
+                        .flickity-enabled .carousel-item {
+                            display: block;
+                        }
+
+                        /* flickity */
+                        .flickity-enabled {
+                            position: relative;
+                        }
+
+                        .flickity-enabled:focus {
+                            outline: none;
+                        }
+
+                        .flickity-viewport {
+                            /*overflow: hidden;*/
+                            position: relative;
+                            height: 100%;
+                        }
+
+                        .flickity-slider {
+                            position: absolute;
+                            width: 100%;
+                            height: 100%;
+                        }
+                    </style>
+                    <script src="https://unpkg.com/flickity@2.2.1/dist/flickity.pkgd.min.js"></script>
+                    <script>
+                        // Flickity carousel
+                        var initCarousel = function (mainClass, cellClass) {
+                            var el = document.querySelector(mainClass);
+                            if (!el) return;
+                            var flickity = new Flickity(el, {
+                                cellSelector: cellClass,
+                                wrapAround: true,
+                                draggable: false,
+                                pageDots: false,
+                                hash: false,
+                                adaptiveHeight: true,
+                                selectedAttraction: 0.15,
+                                friction: 0.72,
+                                prevNextButtons: false,
+                                arrowShape: 'M55.18,32.24l2.56,2.54L42.65,50,57.74,65.22l-2.56,2.54L37.59,50Z',
+                                on: {
+                                    ready: function () {
+                                        initPrevNextButtons(mainClass, this);
+                                    }
+                                },
+                            });
+                            flickity.on('change', function () {
+                                setActiveNote(this, flickity.selectedIndex);
+                            });
+                            return flickity;
+                        };
+                        var setActiveNote = function (f, i) {
+                            var id = f.element.getAttribute('data-id');
+                            var notes = document.querySelectorAll('.samples-note[data-carousel-id="' + id + '"]');
+                            if (!notes.length) return;
+                            notes.forEach(function (n) {
+                                n.setAttribute('data-active', i);
+                            });
+                        };
+                        var initPrevNextButtons = function (c, f) {
+                            var id = (c === '.js-carousel--samples') ? 'samples' : 'safety-samples';
+                            var containerEl = document.getElementById(id);
+                            var prevEls = document.querySelectorAll('.js-carousel-previous[data-carousel-id="' + id + '"]');
+                            var nextEls = document.querySelectorAll('.js-carousel-next[data-carousel-id="' + id + '"]');
+                            prevEls.forEach(function (e) {
+                                e.addEventListener('click', function () {
+                                    f.previous();
+                                    containerEl.scrollIntoView({ behavior: 'smooth' });
+                                });
+                            });
+                            nextEls.forEach(function (e) {
+                                e.addEventListener('click', function () {
+                                    f.next();
+                                    containerEl.scrollIntoView({ behavior: 'smooth' });
+                                })
+                            });
+                        };
+                        // call everything
+                        document.addEventListener('DOMContentLoaded', function () {
+                            var samplesCarousel = initCarousel('.js-carousel--samples', '.js-carousel-item');
+                            var safetySamplesCarousel = initCarousel('.js-carousel--safety-samples', '.js-carousel-item');
+                        });
+                    </script>
+                    <footer class="post-footer js-post-footer">
+                        <!-- footer item -->
+                        <div>
+                            <hr>
+                            <div class="row" id="acknowledgments">
+                                <div class="col">Acknowledgments</div>
+                                <div class="col">
+                                    <p>Contributors: John Schulman, Barret Zoph, Christina Kim, Jacob Hilton, Jacob
+                                        Menick, Jiayi Weng, Juan Felipe Ceron Uribe, Liam Fedus, Luke Metz, Michael
+                                        Pokorny, Rapha Gontijo Lopes, Shengjia Zhao, Arun Vijayvergiya, Eric Sigler,
+                                        Adam Perelman, Chelsea Voss, Mike Heaton, Joel Parish, Dave Cummings, Rajeev
+                                        Nayak, Valerie Balcom, David Schnurr, Tomer Kaftan, Chris Hallacy, Nicholas
+                                        Turley, Noah Deutsch, Vik Goel, Jonathan Ward, Aris Konstantinidis, Wojciech
+                                        Zaremba, Long Ouyang, Leonard Bogdonoff, Joshua Gross, David Medina, Sarah Yoo,
+                                        Teddy Lee, Ryan Lowe, Dan Mossing, Joost Huizinga, Roger Jiang, Carroll
+                                        Wainwright, Diogo Almeida, Steph Lin, Marvin Zhang, Kai Xiao, Katarina Slama,
+                                        Steven Bills, Alex Gray, Jan Leike, Jakub Pachocki, Phil Tillet, Shantanu Jain,
+                                        Greg Brockman, Nick Ryder</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- references footer item -->
+                        <div data-order="-1">
+                            <hr>
+                            <div class="row" id="references">
+                                <div class="col">References</div>
+                                <div class="col">
+                                    <ol>
+                                        <li class="js-ref" data-id="stiennon">
+                                            Stiennon, Nisan, et al. "<a
+                                                href="https://proceedings.neurips.cc/paper/2020/hash/1f89885d556929e98d3ef9b86448f951-Abstract.html">Learning
+                                                to summarize with human feedback</a>." Advances in Neural Information
+                                            Processing Systems 33 (2020): 3008-3021.
+                                        </li>
+                                        <li class="js-ref" data-id="gao">
+                                            Gao, Leo, John Schulman, and Jacob Hilton. "<a
+                                                href="https://arxiv.org/abs/2210.10760">Scaling Laws for Reward Model
+                                                Overoptimization</a>." arXiv preprint arXiv:2210.10760 (2022).
+                                        </li>
+                                        <li class="js-ref" data-id="contest">
+                                            <p>The inspiration for this contest comes in part from work by Kenway, Josh,
+                                                Camille François, Sasha Costanza-Chock, Inioluwa Deborah Raji, and Joy
+                                                Buolamwini. <em>Bug Bounties For Algorithmic Harms? Lessons from
+                                                    Cybersecurity Vulnerability Disclosure for Algorithmic Harms
+                                                    Discovery, Disclosure, and Redress</em>. Washington, DC: Algorithmic
+                                                Justice League. January 2022. Available at <a
+                                                    href="https://ajl.org/bugs">https://ajl.org/bugs</a>. See also work
+                                                by Brundage, Miles, Avin, Shahar, Wang, Jasmine, Belfield, Haydn, and
+                                                Gretchen Krueger et al. &quot;Toward Trustworthy AI Development:
+                                                Mechanisms for Supporting Verifiable Claims,&quot; April 2020. Available
+                                                at <a
+                                                    href="https://arxiv.org/abs/2004.07213">https://arxiv.org/abs/2004.07213</a>.
+                                                See an earlier instance of such a competition at HackerOne. 2021b.
+                                                “Twitter Algorithmic Bias.” HackerOne. <a
+                                                    href="https://hackerone.com/twitter-algorithmic-bias?type=team">https://hackerone.com/twitter-algorithmic-bias?type=team</a>.
+                                                Finally, see early published work on this topic from Rubinovitz, JB,
+                                                &quot;Bias Bounty Programs as a Method of Combatting Bias in AI,&quot;
+                                                August 2018. Available at <a
+                                                    href="https://rubinovitz.com/2018/08/01/bias-bounty-programs-as-a-method-of-combatting">https://rubinovitz.com/2018/08/01/bias-bounty-programs-as-a-method-of-combatting</a>.
+                                            </p>
+                                        </li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- special footer item for footnotes -->
+                        <div data-order="-2">
+                            <hr>
+                            <div class="row" id="footnotes">
+                                <div class="col">Footnotes</div>
+                                <div class="col">
+                                    <hr class="footnotes-sep">
+                                    <section class="footnotes">
+                                        <ol class="footnotes-list">
+                                            <li id="fn1" class="footnote-item">
+                                                <p>No purchase necessary, void where prohibited. Must be at least 18 to
+                                                    enter. For contest details, see the <a
+                                                        href="https://cdn.openai.com/chatgpt/chatgpt-feedback-contest.pdf">Official
+                                                        Rules</a>. <a href="#fnref1" class="footnote-backref">↩︎</a></p>
+                                            </li>
+                                        </ol>
+                                    </section>
+                                    <!--kg-card-end: markdown-->
+                                </div>
+                </section>
+            </div>
+        </section>
+        <footer class="post-footer post-footer--authors container js-post-footer-authors">
+            <div data-order="0">
+                <hr>
+                <div class="row" id="authors">
+                    <div class="col">Authors</div>
+                    <div class="col js-post-footer-authors-list ">
+                        <span class="post-author"><a class="fade" href="/blog/authors/openai/">OpenAI</a></span>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+
+        <footer class="post-footer post-footer--tags container js-post-footer-tags">
+            <div>
+                <hr>
+                <div class="row" id="tags">
+                    <div class="col">Filed Under</div>
+                    <div class="col js-post-footer-tags-list">
+                        <span class="post-tag"><a class="fade"
+                                href="/blog/tags/announcements/">Announcements</a></span><span class="post-tag"><a
+                                class="fade" href="/blog/tags/research/">Research</a></span>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+
+
+    </article>
+
+
+
+
+    <footer class="footer container medium-xsmall-copy line-height-1.6">
+        <a href="/" class="d-block footer-logo mb-1.75"
+            style="margin-left:-1px"><!-- contact comms-team@openai.com for official logo asset; below is hinted version --><svg
+                id="openai-horizontal" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 29.53">
+                <path
+                    d="M40.7,6.98s-.05,0-.07,0c-.02,0-.05,0-.07,0-4.67,0-7.58,2.91-7.58,7.6v2.53c0,4.69,2.9,7.6,7.58,7.6,.02,0,.05,0,.07,0,.02,0,.05,0,.07,0,4.67,0,7.58-2.91,7.58-7.6v-2.53c0-4.69-2.91-7.6-7.58-7.6Zm4.31,10.31c0,3.08-1.6,4.86-4.38,4.89-2.78-.03-4.38-1.81-4.38-4.89v-2.88c0-3.08,1.6-4.86,4.38-4.89,2.78,.03,4.38,1.81,4.38,4.89v2.88Zm40.57-5.79s-.06,0-.09,0c-.02,0-.03,0-.05,0-1.77,0-3.03,.6-3.65,1.75l-.19,.35v-1.8h-3.02v12.56h3.17v-7.48c0-1.76,.95-2.77,2.59-2.8,1.57,.03,2.47,1.02,2.47,2.73v7.55h3.17v-8.09c0-2.99-1.64-4.77-4.39-4.77Zm34.42-1.77v-2.4h-10.46v2.4h3.67v12.22h-3.67v2.4h10.46v-2.4h-3.67V9.73h3.67Zm-18.75-2.4h0s-3.28,0-3.28,0l-6.1,17.04h3.43l1.17-3.65h6.66v.04s1.17,3.62,1.17,3.62h3.43l-6.11-17.04h-.36Zm-4.03,10.98l2.57-8.05,2.55,8.05h-5.12Zm-39.45-6.81s-.05,0-.07,0c-.03,0-.05,0-.07,0-1.59,0-2.96,.66-3.68,1.76l-.18,.28v-1.74h-3.02V28.69h3.17v-5.9l.18,.27c.68,1.01,2.01,1.61,3.56,1.61,.03,0,.05,0,.08,0,.02,0,.04,0,.07,0,2.61,0,5.24-1.7,5.24-5.51v-2.14c0-2.74-1.62-5.51-5.26-5.51Zm2.1,7.5c0,2-1.15,3.24-3.01,3.28-1.73-.03-2.94-1.35-2.94-3.23v-1.89c0-1.9,1.22-3.24,2.97-3.28,1.84,.03,2.98,1.28,2.98,3.28v1.84Zm11.05-7.5h0c-.06,0-.12,.01-.18,.01-.06,0-.12-.01-.18-.01h0c-3.57,0-5.78,2.23-5.78,5.81v1.76c0,3.45,2.24,5.59,5.83,5.59,.08,0,.15,0,.22-.01,.05,0,.09,.01,.14,.01,2.41,0,4.09-.88,5.16-2.7l-2.13-1.23c-.71,1.05-1.66,1.84-3.02,1.84-1.82,0-2.91-1.12-2.91-3.01v-.5h8.44v-2.08c0-3.34-2.19-5.49-5.59-5.49Zm-2.86,5.54v-.3c0-2,.95-3.12,2.68-3.2,1.66,.08,2.66,1.18,2.66,2.99v.5s-5.34,0-5.34,0Z">
+                </path>
+                <path
+                    d="M27.21,12.08c.67-2.01,.44-4.21-.63-6.04-1.61-2.8-4.85-4.24-8.01-3.57C17.16,.89,15.14-.01,13.02,0c-3.23,0-6.1,2.08-7.1,5.15-2.08,.43-3.87,1.73-4.92,3.57-1.62,2.8-1.25,6.32,.92,8.72-.67,2.01-.44,4.21,.63,6.03,1.61,2.81,4.85,4.25,8.02,3.58,1.4,1.58,3.42,2.49,5.54,2.48,3.23,0,6.1-2.08,7.1-5.15,2.08-.43,3.87-1.73,4.91-3.57,1.63-2.8,1.26-6.32-.91-8.72Zm-2.3-5.07c.64,1.12,.88,2.43,.66,3.7-.04-.03-.12-.07-.17-.1l-5.88-3.4c-.3-.17-.67-.17-.97,0l-6.89,3.98v-2.92l5.69-3.29c2.65-1.53,6.03-.62,7.56,2.03Zm-13.25,6.07l2.9-1.68,2.9,1.68v3.35l-2.9,1.68-2.9-1.68v-3.35ZM13.01,1.93c1.3,0,2.55,.45,3.55,1.28-.04,.02-.12,.07-.18,.1l-5.88,3.39c-.3,.17-.48,.49-.48,.84v7.96l-2.53-1.46V7.46c0-3.06,2.47-5.53,5.53-5.54ZM2.68,9.69h0c.65-1.12,1.66-1.98,2.88-2.43v6.99c0,.35,.18,.66,.48,.84l6.88,3.97-2.54,1.47-5.68-3.28c-2.64-1.53-3.55-4.91-2.02-7.56Zm1.55,12.83h0c-.65-1.11-.88-2.43-.66-3.7,.04,.03,.12,.07,.17,.1l5.88,3.4c.3,.17,.67,.17,.97,0l6.88-3.98v2.92l-5.69,3.28c-2.65,1.52-6.03,.62-7.56-2.02Zm11.89,5.08c-1.29,0-2.55-.45-3.54-1.28,.04-.02,.13-.07,.18-.1l5.88-3.39c.3-.17,.49-.49,.48-.84v-7.95l2.53,1.46v6.57c0,3.06-2.48,5.54-5.53,5.54Zm10.34-7.76c-.65,1.12-1.67,1.98-2.88,2.42v-6.99c0-.35-.18-.67-.48-.84h0l-6.89-3.98,2.53-1.46,5.69,3.28c2.65,1.53,3.55,4.91,2.02,7.56Z">
+                </path>
+            </svg></a>
+        <div class="row mb-1">
+
+            <div class="col-6 col-lg">
+                <ul class="mb-2">
+                    <div class="small-caps mb-1/3">Featured</div>
+
+                    <li><a class="fade" href="/blog/chatgpt/">ChatGPT</a></li>
+
+                    <li><a class="fade" href="/dall-e-2/">DALL·E 2</a></li>
+
+                    <li><a class="fade" href="/blog/whisper/">Whisper</a></li>
+
+                    <li><a class="fade" href="/alignment/">Alignment</a></li>
+
+                    <li><a class="fade" href="/fund/">Startup Fund</a></li>
+
+                </ul>
+            </div>
+
+            <div class="col-6 col-lg">
+                <ul class="mb-2">
+                    <div class="small-caps mb-1/3">API</div>
+
+                    <li><a class="fade" href="/api/">Overview</a></li>
+
+                    <li><a class="fade" href="/api/pricing/">Pricing</a></li>
+
+                    <li><a class="fade" href="/api/examples/">Examples</a></li>
+
+                    <li><a class="fade" href="/api/docs/">Docs</a></li>
+
+                    <li><a class="fade" href="/api/policies/">Terms & Policies</a></li>
+
+                    <li><a class="fade" href="https://status.openai.com/">Status</a></li>
+
+                    <li><a class="fade" href="/api/login/">Log in</a></li>
+
+                </ul>
+            </div>
+
+            <div class="col-6 col-lg">
+                <ul class="mb-2">
+                    <div class="small-caps mb-1/3">Blog</div>
+
+                    <li><a class="fade" href="/blog/">Index</a></li>
+
+                    <li><a class="fade" href="/blog/tags/research/">Research</a></li>
+
+                    <li><a class="fade" href="/blog/tags/announcements/">Announcements</a></li>
+
+                    <li><a class="fade" href="/blog/tags/events/">Events</a></li>
+
+                    <li><a class="fade" href="/blog/tags/milestones/">Milestones</a></li>
+
+                </ul>
+            </div>
+
+            <div class="col-6 col-lg">
+                <ul class="mb-2">
+                    <div class="small-caps mb-1/3">Information</div>
+
+                    <li><a class="fade" href="/about/">About Us</a></li>
+
+                    <li><a class="fade" href="/charter/">Our Charter</a></li>
+
+                    <li><a class="fade" href="/research/">Our Research</a></li>
+
+                    <li><a class="fade" href="/publications/">Publications</a></li>
+
+                    <li><a class="fade" href="/newsroom/">Newsroom</a></li>
+
+                    <li><a class="fade" href="/careers/">Careers</a></li>
+
+                </ul>
+            </div>
+
+        </div>
+        <div class="row align-items-center mb-0.125">
+            <div class="col-12 col-md mb-0.5">
+                <a class="fade" style="margin-top:1px" href="/">OpenAI &copy; 2015–2023</a>&emsp;<wbr><a class="fade"
+                    style="margin-top:1px" href="/privacy/">Privacy&nbsp;Policy</a>&emsp;<wbr><a class="fade"
+                    style="margin-top:1px" href="/terms/">Terms&nbsp;of&nbsp;Use</a>
+            </div>
+            <div class="col-12 col-md-4 col-lg-4 col-xl-3 mb-0.5">
+                <div class="d-block d-md-none" style="font-size:1.333333rem"> <a class="fade icon"
+                        href="https://twitter.com/openai">twitter</a> &ensp; <a class="fade icon"
+                        href="https://youtube.com/openai">youtube</a> &ensp; <a class="fade icon"
+                        href="https://github.com/openai/">github</a> &ensp; <a class="fade icon"
+                        href="https://soundcloud.com/openai_audio">soundcloud</a> &ensp; <a class="fade icon"
+                        href="https://linkedin.com/company/openai">linkedin</a> &ensp; <a class="fade icon"
+                        href="https://facebook.com/openai.research/">facebook</a> </div>
+                <div class="d-none d-md-block" style="font-size:1.166667rem">
+                    <div class="d-flex justify-content-between"> <a class="fade icon"
+                            href="https://twitter.com/openai">twitter</a> &ensp; <a class="fade icon"
+                            href="https://youtube.com/openai">youtube</a> &ensp; <a class="fade icon"
+                            href="https://github.com/openai/">github</a> &ensp; <a class="fade icon"
+                            href="https://soundcloud.com/openai_audio">soundcloud</a> &ensp; <a class="fade icon"
+                            href="https://linkedin.com/company/openai">linkedin</a> &ensp; <a class="fade icon"
+                            href="https://facebook.com/openai.research/">facebook</a> </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!DOCTYPE html>
+        <html>
+
+        <head>
+            <meta charSet="utf-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"
+                class="jsx-74ac21e17e774b8" />
+            <title>New chat</title>
+            <meta name="next-head-count" content="4" />
+            <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+            <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+            <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+            <link rel="preload" href="/fonts/Signifier-Regular.otf" as="font" crossorigin="" />
+            <link rel="preload" href="/fonts/Sohne-Buch.otf" as="font" crossorigin="" />
+            <link rel="preload" href="/fonts/Sohne-Halbfett.otf" as="font" crossorigin="" />
+            <link rel="preload" href="/fonts/SohneMono-Buch.otf" as="font" crossorigin="" />
+            <link rel="preload" href="/fonts/SohneMono-Halbfett.otf" as="font" crossorigin="" />
+            <meta name="description" content="A conversational AI system that listens, learns, and challenges" />
+            <meta property="og:title" content="ChatGPT" />
+            <meta property="og:image" content="https://openai.com/content/images/2022/11/ChatGPT.jpg" />
+            <meta property="og:description" content="A conversational AI system that listens, learns, and challenges" />
+            <meta property="og:url" content="https://chat.openai.com" />
+            <link rel="preload" href="/_next/static/css/05101231d7a7253c.css" as="style" />
+            <link rel="stylesheet" href="/_next/static/css/05101231d7a7253c.css" data-n-g="" /><noscript
+                data-n-css=""></noscript>
+            <script defer="" nomodule="" src="/_next/static/chunks/polyfills-c67a75d1b6f99dc8.js"></script>
+            <script src="/_next/static/chunks/webpack-61130643c5918e4b.js" defer=""></script>
+            <script src="/_next/static/chunks/framework-7a789ee31d2a7534.js" defer=""></script>
+            <script src="/_next/static/chunks/main-149b337e061b4d04.js" defer=""></script>
+            <script src="/_next/static/chunks/pages/_app-565153a667adfe23.js" defer=""></script>
+            <script src="/_next/static/chunks/1f110208-44a6f43ddc5e9011.js" defer=""></script>
+            <script src="/_next/static/chunks/2802bd5f-f554e76af2ab5bad.js" defer=""></script>
+            <script src="/_next/static/chunks/68a27ff6-21204d8ed6fd05d7.js" defer=""></script>
+            <script src="/_next/static/chunks/979-abe4a1d02a70bfd7.js" defer=""></script>
+            <script src="/_next/static/chunks/424-7f7835d330adbaab.js" defer=""></script>
+            <script src="/_next/static/chunks/762-02e501a2a689a81c.js" defer=""></script>
+            <script src="/_next/static/chunks/620-32a8f72e9b47aba6.js" defer=""></script>
+            <script src="/_next/static/chunks/686-77022f9e9ce68475.js" defer=""></script>
+            <script src="/_next/static/chunks/814-b691df191ce04aa9.js" defer=""></script>
+            <script src="/_next/static/chunks/777-5fd4ec154fe2130e.js" defer=""></script>
+            <script src="/_next/static/chunks/818-fc3dd1ee6b236371.js" defer=""></script>
+            <script src="/_next/static/chunks/pages/chat/%5B%5B...chatId%5D%5D-5bac7a7209ab3ad6.js" defer=""></script>
+            <script src="/_next/static/LQMfJ_ow0me-GL5PA56dW/_buildManifest.js" defer=""></script>
+            <script src="/_next/static/LQMfJ_ow0me-GL5PA56dW/_ssgManifest.js" defer=""></script>
+            <style data-styled="" data-styled-version="5.3.5"></style>
+        </head>
+
+        <body>
+            <div id="__next">
+                <script>!function () { try { var d = document.documentElement, c = d.classList; c.remove('light', 'dark'); var e = localStorage.getItem('theme'); if ('system' === e || (!e && true)) { var t = '(prefers-color-scheme: dark)', m = window.matchMedia(t); if (m.media !== t || m.matches) { d.style.colorScheme = 'dark'; c.add('dark') } else { d.style.colorScheme = 'light'; c.add('light') } } else if (e) { c.add(e || '') } if (e === 'light' || e === 'dark') d.style.colorScheme = e } catch (e) { } }()</script>
+                <div class="overflow-hidden w-full h-full relative">
+                    <div class="flex h-full flex-1 flex-col md:pl-[260px]">
+                        <main
+                            class="relative h-full w-full transition-width flex flex-col overflow-hidden items-stretch flex-1">
+                            <div class="flex-1 overflow-hidden"></div>
+                            <div
+                                class="absolute bottom-0 left-0 w-full border-t md:border-t-0 dark:border-white/20 md:border-transparent md:dark:border-transparent md:bg-vert-light-gradient bg-white dark:bg-gray-800 md:!bg-transparent dark:md:bg-vert-dark-gradient">
+                                <form
+                                    class="stretch mx-2 flex flex-row gap-3 pt-2 last:mb-2 md:last:mb-6 lg:mx-auto lg:max-w-3xl lg:pt-6">
+                                    <div class="relative flex h-full flex-1 md:flex-col">
+                                        <div
+                                            class="ml-1 mt-1.5 md:w-full md:m-auto md:flex md:mb-2 gap-2 justify-center">
+                                        </div>
+                                        <div
+                                            class="flex flex-col w-full py-2 flex-grow md:py-3 md:pl-4 relative border border-black/10 bg-white dark:border-gray-900/50 dark:text-white dark:bg-gray-700 rounded-md shadow-[0_0_10px_rgba(0,0,0,0.10)] dark:shadow-[0_0_15px_rgba(0,0,0,0.10)]">
+                                            <textarea tabindex="0" data-id="root" style="max-height:200px" rows="1"
+                                                placeholder=""
+                                                class="m-0 w-full resize-none border-0 bg-transparent p-0 pl-2 pr-7 focus:ring-0 focus-visible:ring-0 dark:bg-transparent md:pl-0"></textarea><button
+                                                class="absolute p-1 rounded-md text-gray-500 bottom-1.5 right-1 md:bottom-2.5 md:right-2 hover:bg-gray-100 dark:hover:text-gray-400 dark:hover:bg-gray-900 disabled:hover:bg-transparent dark:disabled:hover:bg-transparent"><svg
+                                                    stroke="currentColor" fill="currentColor" stroke-width="0"
+                                                    viewBox="0 0 20 20" class="h-4 w-4 rotate-90" height="1em"
+                                                    width="1em" xmlns="http://www.w3.org/2000/svg">
+                                                    <path
+                                                        d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z">
+                                                    </path>
+                                                </svg></button></div>
+                                    </div>
+                                </form>
+                                <div
+                                    class="px-3 pt-2 pb-3 text-center text-xs text-black/50 dark:text-white/50 md:px-4 md:pt-3 md:pb-6">
+                                    <a href="https://help.openai.com/en/articles/6825453-chatgpt-release-notes"
+                                        target="_blank" rel="noreferrer" class="underline">ChatGPT Jan 9 Version</a>.
+                                    Free Research Preview. Our goal is to make AI systems more natural and safe to
+                                    interact with. Your feedback will help us improve.</div>
+                            </div>
+                        </main>
+                    </div>
+                    <div class="dark hidden bg-gray-900 md:fixed md:inset-y-0 md:flex md:w-[260px] md:flex-col">
+                        <div class="flex h-full min-h-0 flex-col ">
+                            <div class="scrollbar-trigger flex h-full w-full flex-1 items-start border-white/20">
+                                <nav class="flex h-full flex-1 flex-col space-y-1 p-2"><a
+                                        class="flex py-3 px-3 items-center gap-3 rounded-md hover:bg-gray-500/10 transition-colors duration-200 text-white cursor-pointer text-sm mb-2 flex-shrink-0 border border-white/20"><svg
+                                            stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24"
+                                            stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4" height="1em"
+                                            width="1em" xmlns="http://www.w3.org/2000/svg">
+                                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                                        </svg>New chat</a>
+                                    <div class="flex-col flex-1 overflow-y-auto border-b border-white/20">
+                                        <div class="flex flex-col gap-2 text-gray-100 text-sm"></div>
+                                    </div><a
+                                        class="flex py-3 px-3 items-center gap-3 rounded-md hover:bg-gray-500/10 transition-colors duration-200 text-white cursor-pointer text-sm"><svg
+                                            stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24"
+                                            stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4" height="1em"
+                                            width="1em" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                                        </svg>Dark<!-- --> mode</a><a href="https://discord.gg/openai" target="_blank"
+                                        class="flex py-3 px-3 items-center gap-3 rounded-md hover:bg-gray-500/10 transition-colors duration-200 text-white cursor-pointer text-sm"><svg
+                                            stroke="currentColor" fill="currentColor" stroke-width="2"
+                                            viewBox="0 0 640 512" class="h-4 w-4" height="1em" width="1em"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M524.531,69.836a1.5,1.5,0,0,0-.764-.7A485.065,485.065,0,0,0,404.081,32.03a1.816,1.816,0,0,0-1.923.91,337.461,337.461,0,0,0-14.9,30.6,447.848,447.848,0,0,0-134.426,0,309.541,309.541,0,0,0-15.135-30.6,1.89,1.89,0,0,0-1.924-.91A483.689,483.689,0,0,0,116.085,69.137a1.712,1.712,0,0,0-.788.676C39.068,183.651,18.186,294.69,28.43,404.354a2.016,2.016,0,0,0,.765,1.375A487.666,487.666,0,0,0,176.02,479.918a1.9,1.9,0,0,0,2.063-.676A348.2,348.2,0,0,0,208.12,430.4a1.86,1.86,0,0,0-1.019-2.588,321.173,321.173,0,0,1-45.868-21.853,1.885,1.885,0,0,1-.185-3.126c3.082-2.309,6.166-4.711,9.109-7.137a1.819,1.819,0,0,1,1.9-.256c96.229,43.917,200.41,43.917,295.5,0a1.812,1.812,0,0,1,1.924.233c2.944,2.426,6.027,4.851,9.132,7.16a1.884,1.884,0,0,1-.162,3.126,301.407,301.407,0,0,1-45.89,21.83,1.875,1.875,0,0,0-1,2.611,391.055,391.055,0,0,0,30.014,48.815,1.864,1.864,0,0,0,2.063.7A486.048,486.048,0,0,0,610.7,405.729a1.882,1.882,0,0,0,.765-1.352C623.729,277.594,590.933,167.465,524.531,69.836ZM222.491,337.58c-28.972,0-52.844-26.587-52.844-59.239S193.056,219.1,222.491,219.1c29.665,0,53.306,26.82,52.843,59.239C275.334,310.993,251.924,337.58,222.491,337.58Zm195.38,0c-28.971,0-52.843-26.587-52.843-59.239S388.437,219.1,417.871,219.1c29.667,0,53.307,26.82,52.844,59.239C470.715,310.993,447.538,337.58,417.871,337.58Z">
+                                            </path>
+                                        </svg>OpenAI Discord</a><a
+                                        href="https://help.openai.com/en/collections/3742473-chatgpt" target="_blank"
+                                        class="flex py-3 px-3 items-center gap-3 rounded-md hover:bg-gray-500/10 transition-colors duration-200 text-white cursor-pointer text-sm"><svg
+                                            stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24"
+                                            stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4" height="1em"
+                                            width="1em" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                            <polyline points="15 3 21 3 21 9"></polyline>
+                                            <line x1="10" y1="14" x2="21" y2="3"></line>
+                                        </svg>Updates &amp; FAQ</a><a
+                                        class="flex py-3 px-3 items-center gap-3 rounded-md hover:bg-gray-500/10 transition-colors duration-200 text-white cursor-pointer text-sm"><svg
+                                            stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24"
+                                            stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4" height="1em"
+                                            width="1em" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                                            <polyline points="16 17 21 12 16 7"></polyline>
+                                            <line x1="21" y1="12" x2="9" y2="12"></line>
+                                        </svg>Log out</a>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="absolute top-0 left-0 right-0 z-[2]"></div>
+            </div>
+            <script id="__NEXT_DATA__"
+                type="application/json">{"props":{"pageProps":{"user":{"id":"user-IL7hSw37r6NEXcZcTuhxZo9o","name":"MD Awaiz","email":"mdawaiz043@gmail.com","image":"https://lh3.googleusercontent.com/a/AEdFTp6Qkk95fdeFxCKvPP6bkBHQBXtV7dAKiBc5-571=s96-c","picture":"https://lh3.googleusercontent.com/a/AEdFTp6Qkk95fdeFxCKvPP6bkBHQBXtV7dAKiBc5-571=s96-c","groups":["labs"],"features":["saveHistory"]},"accessToken":"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik1UaEVOVUpHTkVNMVFURTRNMEZCTWpkQ05UZzVNRFUxUlRVd1FVSkRNRU13UmtGRVFrRXpSZyJ9.eyJodHRwczovL2FwaS5vcGVuYWkuY29tL3Byb2ZpbGUiOnsiZW1haWwiOiJtZGF3YWl6MDQzQGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJnZW9pcF9jb3VudHJ5IjoiSU4ifSwiaHR0cHM6Ly9hcGkub3BlbmFpLmNvbS9hdXRoIjp7InVzZXJfaWQiOiJ1c2VyLUlMN2hTdzM3cjZORVhjWmNUdWh4Wm85byJ9LCJpc3MiOiJodHRwczovL2F1dGgwLm9wZW5haS5jb20vIiwic3ViIjoiZ29vZ2xlLW9hdXRoMnwxMDk3MTA2NDI0ODg0NDk5NjYzNTIiLCJhdWQiOlsiaHR0cHM6Ly9hcGkub3BlbmFpLmNvbS92MSIsImh0dHBzOi8vb3BlbmFpLmF1dGgwLmNvbS91c2VyaW5mbyJdLCJpYXQiOjE2NzQxMDE3MzksImV4cCI6MTY3NDcwNjUzOSwiYXpwIjoiVGRKSWNiZTE2V29USHROOTVueXl3aDVFNHlPbzZJdEciLCJzY29wZSI6Im9wZW5pZCBwcm9maWxlIGVtYWlsIG1vZGVsLnJlYWQgbW9kZWwucmVxdWVzdCBvcmdhbml6YXRpb24ucmVhZCBvZmZsaW5lX2FjY2VzcyJ9.lVrnqST4X_C1masTjVnamlc9HYlx8A7Zk55bsyaxORtSXxMCCBW_-8-xGFQPNAAr63bXEIHpgT4dzg5NXu1wczXQPNeiEXqNRvri9RC3NL3sc1uckLuukEuKs540NySyMa7q6_IGdFKfl_MmUVRr0Mvv4aeWy3io7Cy1ZJnCv3Jkf9JzPaEwKybgUMeNDIm9DDXfNsph3vhqEXtbEoSzgxaCqzwhxDNxPKHYbDU4ev50Wrk5LfRIjRd5s3eznh8fmQnL3lik5oAAu_kXPqc2KDdz0qlVguQdy9sezeMc9zl4qziFcU4dEnZ-vB5wS5K06wp9c5Hk0eI1O7zW5vn9XQ","features":["saveHistory"],"pages":[{"id":"chat","name":"ChatGPT","href":"/chat","theme":{"icon":"globe","color":"#10A37F"},"description":"Chat with GPT"}],"serviceStatus":{},"initialData":{"thread":{"root":{"id":"root","children":[],"parentId":"","type":"root","message":{"id":"e2009b08-29a4-497a-8f65-b63da48782ed","role":"unknown","content":{"content_type":"text","parts":[]}}}},"currentLeafId":"root","threadId":null,"title":"New chat"},"accountStatusResponse":{"account_plan":{"is_paid_subscription_active":false,"subscription_plan":"chatgptfreeplan","account_user_role":"account-owner"}},"isUserInCanPayGroup":false},"__N_SSP":true},"page":"/chat/[[...chatId]]","query":{},"buildId":"LQMfJ_ow0me-GL5PA56dW","isFallback":false,"gssp":true,"scriptLoader":[]}</script>
+        </body>
+
+        </html>
+    </footer>
+    <script type="text/javascript" src="https://openai.com/assets/scripts/main.js?v=0015bdc8f8"></script>
+
+
+</body>
+
+</html>

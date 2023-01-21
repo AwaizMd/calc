@@ -100,20 +100,7 @@
                     Percentage Difference Calculator</a></li>
         </ol>
     </div>
-
-    <script>
-        function calculatePercentageChange() {
-            let originalValue = document.getElementById("percentage-change-value1").value;
-            let newValue = document.getElementById("percentage-change-value2").value;
-            let change = newValue - originalValue;
-            let percentageChange = ((change / originalValue) * 100).toFixed(3);
-            if(percentageChange>0){
-                document.getElementById("percentage-change-result").value = percentageChange + " % increase";
-            }else{
-                document.getElementById("percentage-change-result").value = percentageChange + " % decrease";
-            }
-        }
-    </script>
+    <script src="/scripts/calculator.js"></script>
 </body>
 
 </html>

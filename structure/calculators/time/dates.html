@@ -81,65 +81,7 @@
         </div>
     </div>
 
-    <script>
-        setInterval(function () {
-            let timestamp = new Date().getTime();
-            let date = new Date();
-            let currentDate = new Date();
-            let currentYear = currentDate.getFullYear();
-            let lastDayOfYear = new Date(currentYear, 11, 31);
-            let timeDiff = lastDayOfYear - currentDate;
-            let daysLeft = Math.ceil(timeDiff / (1000 * 3600 * 24));
-            document.getElementById("current-timestamp").innerHTML = `* Current Timestamp : ${timestamp}`;
-            document.getElementById("days-left").innerHTML = `* ${daysLeft} days left in the current year`;
-        }, 1000);
-
-
-
-        function daysBetweenDates() {
-            let startDate = new Date(document.getElementById("date1").value);
-            let endDate = new Date(document.getElementById("date2").value);
-            let difference = endDate.getTime() - startDate.getTime();
-            let differenceInDays = difference / (1000 * 3600 * 24);
-            document.getElementById("date-days").innerHTML =
-                "Difference: " + differenceInDays + " days";
-        }
-
-        function convertToTimestamp() {
-            let date = new Date(document.getElementById("date3").value);
-            let timestamp = date.getTime();
-            document.getElementById("date-timestamp").innerHTML = "Timestamp: " + timestamp;
-        }
-
-
-        function convertToDate() {
-            let timestamp = document.getElementById("timestamp3").value;
-            console.log("timestamp: ", timestamp);
-            // let date = new Date(timestamp);
-            // console.log("date: ", date);
-            document.getElementById("timestamp-date").innerHTML = "Date: " + new Date(timestamp);
-            // let timestamp = 1672185600000;
-            // let date = new Date(timestamp);
-            // console.log(date);
-        }
-
-        function calculateDifference() {
-            let startTime = document.getElementById("timestamp1").value;
-            let endTime = document.getElementById("timestamp2").value;
-            let differenceInMiliseconds = endTime - startTime;
-            let differenceInSeconds = differenceInMiliseconds / 1000;
-            let differenceInMinutes = differenceInSeconds / 60;
-            let differenceInHours = differenceInMinutes / 60;
-            document.getElementById("milliseconds").innerHTML = `difference in milliseconds ${differenceInMiliseconds}`
-            document.getElementById("seconds").innerHTML = `difference in seconds ${differenceInSeconds}`;
-            document.getElementById("minutes").innerHTML = `difference in minutes ${differenceInMinutes}`;
-            document.getElementById("hours").innerHTML = `differnce in hours ${differenceInHours}`;
-        }
-
-
-
-
-    </script>
+    <script src="/scripts/calculator.js"></script>
 </body>
 
 </html>
