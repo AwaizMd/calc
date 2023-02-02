@@ -101,17 +101,22 @@ label {
   width: 50%;
 }
 
-.article,
+
 .simple-interest {
   width: 50%;
   margin-left: 2rem;
+}
+
+.article{
+  width: 50%;
+  margin-left: 5rem;
 }
 
 p {
   font-size: 1.1rem;
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 900px) {
   input[type="submit"],
   button,
   .percentage-btn,
@@ -121,6 +126,10 @@ p {
     background-color: #333;
     border: none;
     color: white;
+  }
+  .article{
+    margin-left: 1rem;
+    margin-right: 1rem;
   }
   .article,
   .simple-interestv.compound-interest,
