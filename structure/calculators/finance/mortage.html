@@ -62,21 +62,31 @@
     </header>
     <div class="content-container">
         <div class="mortage left">
-            <p id="heading">Mortgage Calculator</p>
-            <p>Example : </p>
-            <input type="number" id="mortage-loan-amount" placeholder="Enter Loan Amount" />
-            <input type="number" id="mortage-interest-rate" placeholder="Enter Interest Rate" /><br>
-            <input type="number" id="mortage-period" placeholder="Enter Period" />
-            <select name="period-type" id="period-type">
-                <option value="days">Days</option>
-                <option value="months">Months</option>
-                <option value="years">Years</option>
-            </select><br />
-            <textarea name="" class="answer" id="mortage-result" placeholder="Result" readonly></textarea>
-            <br />
-            <div class="small-add">ADVERTISEMENT</div>
-            <input class="percentage-btn" id="mortage-btn" type="submit" value="Calculate"
-                onclick="calculateMortgage()" />
+            <h1 id="heading">Mortgage Calculator</h2>
+                <input type="number" id="mortage-loan-amount" placeholder="Enter Loan Amount" />
+                <input type="number" id="mortage-interest-rate" placeholder="Enter Interest Rate" /><br>
+                <input type="number" id="mortage-period" placeholder="Enter Period" />
+                <select name="period-type" id="period-type">
+                    <option value="days">Days</option>
+                    <option value="months">Months</option>
+                    <option value="years">Years</option>
+                </select><br />
+                <textarea name="" class="answer" id="mortage-result" placeholder="Result" readonly></textarea>
+                <br />
+                <div class="small-add">
+                    <script async
+                        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7309194358629955"
+                        crossorigin="anonymous"></script>
+                    <!-- TechyCoder_Tools_Ads -->
+                    <ins class="adsbygoogle" style="display:inline-block;height:6rem;align-items: center;"
+                        data-ad-client="ca-pub-7309194358629955" data-ad-slot="9242292638" data-ad-format="auto"
+                        data-full-width-responsive="true">ADD</ins>
+                    <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </div>
+                <input class="percentage-btn" id="mortage-btn" type="submit" value="Calculate"
+                    onclick="calculateMortgage()" />
         </div>
         <div class="article right">
             <p>A mortgage calculator is a tool used to determine the monthly payment and overall cost of a mortgage
@@ -88,7 +98,7 @@
                 the loan, the interest rate, the term of the loan, and any additional costs, such as property taxes and
                 insurance.</p>
 
-            <p>Formula: M = P * (r(1 + r)^n)/((1 + r)^n - 1)</p>
+            <h2>Formula: M = P * (r(1 + r)^n)/((1 + r)^n - 1)</h2>
 
             <p>Where:</p>
             <p>M = monthly payment amount</p>

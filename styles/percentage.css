@@ -9,6 +9,13 @@ body {
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
 }
 
+h1{
+  font-weight: 400;
+}
+h2{
+  font-weight: 400;
+}
+
 input {
   padding: 10px;
   margin: 1rem;

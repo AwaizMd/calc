@@ -20,6 +20,10 @@ ul li a:hover {
   color: #6e6d7a;
 }
 
+a{
+  text-decoration: none;
+}
+
 .header {
   display: flex;
   justify-content: space-between;
@@ -126,6 +130,8 @@ ul li a:hover {
 #headings {
   color: #333;
   font-size: 1.5rem;
+  font-weight:400;
+  word-spacing: 5px;
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
 }
 
@@ -142,17 +148,15 @@ ul li a:hover {
 
 .add{
   height: 10rem;
-  background-color: #6e6d7a;
   margin: 3rem;
   text-align: center;
-  color: white;
+  color: black;
 }
 
 .small-add{
   height: 5rem;
-  background-color: #6e6d7a;
   text-align: center;
-  color: white;
+  color: black;
   width: 100%;
   margin: 2rem;
   margin-right: 1rem;

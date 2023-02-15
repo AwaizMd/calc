@@ -66,16 +66,14 @@ button:hover {
 
 #current-timestamp{
   font-style: italic;
-  font-weight: 600;
   margin-top: 10rem;
   display: inline-block;
   margin-left: 5rem;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
 }
 
 #days-left{
   font-style: italic;
-  font-weight: 600;
   margin-top: 2rem;
   display: inline-block;
   margin-left: 5rem;
